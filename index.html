@@ -1556,18 +1556,42 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function downloadPDF() {
+                function downloadPDF() {
             const element = document.getElementById('pdf-printable-content');
             if (!element) return;
+
+            // Privremeno osiguravamo da je element u potpunosti vidljiv i renderiran u DOM-u
+            const viewCjenik = document.getElementById('view-cjenik');
+            const wasActive = viewCjenik.classList.contains('active');
+            
+            if (!wasActive) {
+                viewCjenik.style.display = 'block';
+                viewCjenik.style.position = 'absolute';
+                viewCjenik.style.left = '-9999px';
+            }
+
             const opt = {
-                margin: [8, 8, 8, 8],
+                margin: [10, 10, 10, 10],
                 filename: 'Trubica_Sluzbeni_Cjenik_2026.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
+                html2canvas: { 
+                    scale: 2, 
+                    useCORS: true,
+                    scrollY: 0
+                },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
-            html2pdf().set(opt).from(element).save();
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Vraćamo stilove na staro ako sekcija nije bila aktivna
+                if (!wasActive) {
+                    viewCjenik.style.display = '';
+                    viewCjenikstyle.position = '';
+                    viewCjenik.style.left = '';
+                }
+            });
         }
+
 
         function submitBookingForm() {
             const msg = document.getElementById('booking-success-msg');
