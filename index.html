@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -60,8 +60,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        #top-ponuda-modal, #review-modal {
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+        #top-ponuda-modal, #review-modal, #app-install-banner {
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
         }
         
         ::-webkit-scrollbar {
@@ -88,6 +88,30 @@
         }
         .animate-blink {
             animation: blink 1.2s infinite ease-in-out;
+        }
+
+        /* NOVA, USPORENA I ELEGANTNA ANIMACIJA ZA TOP PONUDU */
+        .moving-text-banner {
+            will-change: transform, opacity;
+            animation: slide-pause-blink 12s infinite cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        @keyframes slide-pause-blink {
+            0% { transform: translateX(110vw); opacity: 0; }
+            10% { transform: translateX(0); opacity: 1; } /* Uleti i stane na sredini */
+            40% { transform: translateX(0); opacity: 1; } /* Čeka da kupac pročita */
+            
+            /* Brzo, atraktivno blinkanje uz lagano povećanje */
+            42% { opacity: 0; transform: scale(1.03); } 
+            44% { opacity: 1; transform: scale(1); }
+            46% { opacity: 0; transform: scale(1.03); }
+            48% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0; transform: scale(1.03); }
+            52% { opacity: 1; transform: scale(1); }
+            
+            80% { transform: translateX(0); opacity: 1; } /* Čeka još malo nakon blinka */
+            90% { transform: translateX(-110vw); opacity: 0; } /* Odlazi ulijevo */
+            100% { transform: translateX(-110vw); opacity: 0; } /* Reset */
         }
 
         .nav-underline-active {
@@ -128,10 +152,26 @@
 </head>
 <body class="font-sans text-gray-700 bg-brand-light antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Mobile Top Ponuda Banner -->
-    <button onclick="openModal()" class="w-full bg-brand-primary text-black block lg:hidden font-extrabold text-xs sm:text-sm uppercase py-3 animate-blink shadow-md z-50 relative border-b-2 border-black">
-        <i class="fa-solid fa-bolt mr-1"></i> Top Ponuda: Vikend Paket Prikolica za Motore
-    </button>
+    <!-- NOVI, MOĆNIJI Mobile Top Ponuda Banner sa složenom animacijom -->
+    <div class="block lg:hidden w-full bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] border-b-[3px] border-black shadow-[0_4px_15px_rgba(234,179,8,0.4)] z-50 relative overflow-hidden h-[50px]">
+        <button onclick="openModal()" class="w-full h-full focus:outline-none flex justify-center items-center relative">
+            <div class="moving-text-banner absolute whitespace-nowrap flex items-center h-full">
+                <!-- Značka (Badge) -->
+                <span class="bg-black text-brand-primary px-3 py-1 rounded shadow-inner text-[10px] sm:text-[11px] font-black tracking-widest uppercase flex items-center border border-gray-800">
+                    <i class="fa-solid fa-bolt animate-pulse mr-1.5 text-yellow-400 text-xs"></i> TOP PONUDA
+                </span>
+                <!-- Glavni Tekst -->
+                <span class="mx-3 font-heading text-[12px] sm:text-[14px] font-extrabold uppercase text-black tracking-wide drop-shadow-sm">
+                    Vikend Paket: Prikolica za Motore
+                </span>
+                <!-- Cijena u bloku -->
+                <span class="bg-black text-white px-2.5 py-0.5 rounded text-[12px] sm:text-[14px] font-black border border-brand-primary/50 shadow-sm">
+                    60€
+                </span>
+                <i class="fa-solid fa-arrow-right ml-3 text-black opacity-80 animate-pulse text-sm"></i>
+            </div>
+        </button>
+    </div>
 
     <!-- Top Bar -->
     <div class="bg-black text-gray-400 text-[11px] sm:text-sm py-2 px-4 border-b border-gray-900">
@@ -194,34 +234,35 @@
     </nav>
 
     <!-- Top Ponuda Modal -->
-    <div id="top-ponuda-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none">
-        <div class="bg-white rounded-2xl max-w-lg w-full mx-4 overflow-hidden shadow-2xl border border-gray-200 transform scale-95 transition-transform duration-300" id="modal-content">
-            <div class="bg-brand-darker p-6 text-white relative border-b-4 border-brand-primary">
+    <div id="top-ponuda-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div class="bg-brand-darker rounded-2xl max-w-lg w-full mx-4 overflow-hidden shadow-2xl border-2 border-brand-primary transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="bg-black p-6 text-white relative border-b border-gray-800">
                 <div class="absolute top-4 right-4">
-                    <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-brand-primary text-2xl font-bold transition">&times;</button>
                 </div>
-                <span class="bg-brand-primary text-brand-darker text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Ekskluzivna Top Ponuda</span>
-                <h3 class="font-heading text-2xl font-bold mt-3">Vikend Paket: Prikolica za Motore</h3>
+                <span class="bg-brand-primary text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Ekskluzivna Top Ponuda</span>
+                <h3 class="font-heading text-2xl font-bold mt-3 text-white">Vikend Paket: Prikolica za Motore</h3>
             </div>
-            <div class="p-6 md:p-8">
-                <div class="flex items-center gap-4 mb-6 bg-brand-accent/50 p-4 rounded-xl border border-brand-primary/30">
-                    <img src="najam-prikolica-prijevoz (3).jpg" alt="Prikolica motora" class="w-24 h-24 object-cover rounded-lg shadow" onerror="this.src='https://placehold.co/300x300/18181b/ffffff?text=Prikolica'">
+            <div class="p-6 md:p-8 bg-[#0a0a0a]">
+                <div class="flex items-center gap-4 mb-6 bg-black p-4 rounded-xl border border-gray-800">
+                    <img src="najam-prikolica-prijevoz (3).jpg" alt="Prikolica motora" class="w-24 h-24 object-cover rounded-lg shadow-md border border-gray-700" onerror="this.src='https://placehold.co/300x300/18181b/ffffff?text=Slika'">
                     <div>
-                        <p class="text-xs text-gray-600 font-bold uppercase">Petak popodne - Ponedjeljak ujutro</p>
+                        <p class="text-xs text-gray-400 font-bold uppercase">Petak popodne - Ponedjeljak ujutro</p>
                         <div class="flex items-baseline gap-2 mt-1">
-                            <span class="text-3xl font-extrabold text-brand-darker">60,00 €</span>
+                            <span class="text-gray-500 line-through text-lg font-bold">75,00 €</span>
+                            <span class="text-3xl font-extrabold text-brand-primary">60,00 €</span>
                         </div>
-                        <p class="text-xs text-green-700 font-semibold mt-1"><i class="fa-solid fa-check mr-1"></i> Najbolja cijena za vikend izlet!</p>
+                        <p class="text-xs text-green-500 font-semibold mt-1"><i class="fa-solid fa-check mr-1"></i> Ušteda 15 € za cijeli vikend!</p>
                     </div>
                 </div>
-                <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                <p class="text-gray-300 text-sm mb-6 leading-relaxed">
                     Unajmite prikolicu za prijevoz motora za cijeli vikend po super cijeni. Idealno za izlete, utrke i siguran transport vaših ljubimaca na dva kotača.
                 </p>
                 <div class="flex gap-3">
-                    <button onclick="closeModal(); switchView('rezervacija');" class="flex-1 font-heading bg-brand-primary hover:bg-brand-primaryHover text-black font-semibold py-3 px-4 rounded-xl transition text-center shadow-sm">
+                    <button onclick="closeModal(); switchView('rezervacija'); document.getElementById('booking-service-select').value = 'prikolica-motori';" class="flex-1 font-heading bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-3 px-4 rounded-xl transition text-center shadow-sm">
                         Rezerviraj Odmah
                     </button>
-                    <button onclick="closeModal()" class="font-heading px-5 py-3 border border-gray-300 rounded-xl font-semibold text-gray-700 hover:bg-gray-100 transition">
+                    <button onclick="closeModal()" class="font-heading px-5 py-3 border border-gray-600 rounded-xl font-semibold text-gray-300 hover:bg-gray-800 hover:text-white transition">
                         Zatvori
                     </button>
                 </div>
@@ -239,8 +280,11 @@
                 <div id="slides-container" class="relative w-full h-full">
                     
                     <div class="hero-slide absolute inset-0 flex flex-col md:flex-row items-center justify-between opacity-100 z-10" id="slide-0">
-                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-[#0a0a0a]">
-                            <img src="najam-prikolice-prijevoz-automobila (2).jpg" alt="Najam prikolica" class="w-full h-full object-contain p-2 md:p-6">
+                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-black p-4 flex items-center justify-center">
+                            <!-- Premium Okvir -->
+                            <div class="w-full h-full border border-gray-800 bg-[#0a0a0a] p-2 rounded-2xl shadow-2xl">
+                                <img src="najam-prikolice-prijevoz-automobila (2).jpg" alt="Najam prikolica" class="w-full h-full object-contain rounded-xl" onerror="this.src='https://placehold.co/800x450/111111/eab308?text=Trubica'">
+                            </div>
                         </div>
                         <div class="w-full md:w-1/2 h-[55%] md:h-full px-6 sm:px-10 lg:px-16 z-20 relative text-left py-6 md:py-0 bg-brand-darker flex flex-col justify-center">
                             <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-white">
@@ -258,8 +302,10 @@
                     </div>
 
                     <div class="hero-slide absolute inset-0 flex flex-col md:flex-row items-center justify-between opacity-0 -z-10" id="slide-1">
-                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-[#0a0a0a]">
-                            <img src="Najam sandučarke (3).jpg" alt="Najam Sandučarke" class="w-full h-full object-contain p-2 md:p-6">
+                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-black p-4 flex items-center justify-center">
+                            <div class="w-full h-full border border-gray-800 bg-[#0a0a0a] p-2 rounded-2xl shadow-2xl">
+                                <img src="Najam sandučarke (3).jpg" alt="Najam Sandučarke" class="w-full h-full object-contain rounded-xl" onerror="this.src='https://placehold.co/800x450/111111/eab308?text=Trubica'">
+                            </div>
                         </div>
                         <div class="w-full md:w-1/2 h-[55%] md:h-full px-6 sm:px-10 lg:px-16 z-20 relative text-left py-6 md:py-0 bg-brand-darker flex flex-col justify-center">
                             <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-white">
@@ -277,8 +323,10 @@
                     </div>
 
                     <div class="hero-slide absolute inset-0 flex flex-col md:flex-row items-center justify-between opacity-0 -z-10" id="slide-2">
-                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-[#0a0a0a]">
-                            <img src="najam-hladnjace.jpg" alt="Mobilna hladnjača" class="w-full h-full object-contain p-2 md:p-6">
+                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-black p-4 flex items-center justify-center">
+                            <div class="w-full h-full border border-gray-800 bg-[#0a0a0a] p-2 rounded-2xl shadow-2xl">
+                                <img src="najam-hladnjace.jpg" alt="Mobilna hladnjača" class="w-full h-full object-contain rounded-xl" onerror="this.src='https://placehold.co/800x450/111111/eab308?text=Trubica'">
+                            </div>
                         </div>
                         <div class="w-full md:w-1/2 h-[55%] md:h-full px-6 sm:px-10 lg:px-16 z-20 relative text-left py-6 md:py-0 bg-brand-darker flex flex-col justify-center">
                             <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-white">
@@ -322,6 +370,7 @@
                             <h3 class="font-heading text-xl sm:text-2xl font-semibold text-white leading-tight">Vikend Paket: Prikolica za Motore</h3>
                             <p class="text-gray-400 text-sm mt-1.5 leading-snug">
                                 Preuzmite prikolicu u petak popodne i vratite ju tek u ponedjeljak ujutro! Cijeli vikend po super cijeni od samo <strong class="text-brand-primary text-lg ml-1">60,00 €</strong> 
+                                <span class="line-through text-gray-500 text-xs ml-1">75,00 €</span>
                             </p>
                         </div>
                     </div>
@@ -393,7 +442,7 @@
                             <div class="flex text-brand-primary text-sm mb-4">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             </div>
-                            <p class="text-gray-300 italic mb-6">"Uzeo sam sandučarku za vikend selidbu. Cijena je odlična s obzirom na to da su mi dali gurtne besplatno. Sve preporuke za Trubicu!"</p>
+                            <p class="text-gray-300 italic mb-6">"Uzeo sam auto prikolicu (sandučarku) za vikend selidbu. Cijena je odlična s obzirom na to da su mi dali gurtne besplatno. Sve preporuke za Trubicu!"</p>
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-brand-primary text-black font-bold flex items-center justify-center uppercase">A</div>
@@ -444,16 +493,19 @@
                         <p class="text-gray-600 leading-relaxed mb-6">
                             Trubica j.d.o.o. je tvrtka osnovana u lipnju 2016. Mlada smo i inovativna tvrtka koja nudi široki spektar usluga sa velikim brojem zadovoljnih korisnika koji nam se vraćaju. Nudimo usluge prijevoza na području grada Zagreba, Republike Hrvatske te bližih zemalja EU (Slovenija, Austrija, Italija, Grčka, Njemačka). Razlikujemo se od drugih jer prijevoz obavljamo manjim dostavnim vozilom VW Caddy s kojim smo u mogućnosti ući u uske prostore te podzemne garaže. Garantiramo kvalitetu i profesionalnost prilikom izvođenja svake naše usluge. Slobodno nam se obratite radi BESPLATNE ponude koju ćemo izraditi za Vas. Obratite nam se sa povjerenjem i postanite jedan od stotinu naših zadovoljnih korisnika.
                         </p>
-                        <div class="grid grid-cols-2 gap-4 mt-6 text-sm font-semibold text-brand-darker">
-                            <div class="bg-white p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Caddy prijevoz</div>
-                            <div class="bg-white p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam prikolica</div>
-                            <div class="bg-white p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam barskih stolova</div>
-                            <div class="bg-white p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam vozila</div>
+                        <div class="grid grid-cols-2 gap-4 mt-6 text-sm font-semibold text-gray-300">
+                            <div class="bg-black p-4 rounded-xl shadow-md border border-gray-800 border-l-4 border-l-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Caddy prijevoz</div>
+                            <div class="bg-black p-4 rounded-xl shadow-md border border-gray-800 border-l-4 border-l-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam prikolica</div>
+                            <div class="bg-black p-4 rounded-xl shadow-md border border-gray-800 border-l-4 border-l-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam barskih stolova</div>
+                            <div class="bg-black p-4 rounded-xl shadow-md border border-gray-800 border-l-4 border-l-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam vozila</div>
                         </div>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-brand-primary/20 rounded-2xl transform rotate-2"></div>
-                        <img src="Caddy.jpg" alt="O nama Trubica - Caddy prijevoz" class="relative rounded-2xl shadow-xl w-full h-64 sm:h-80 md:h-[400px] lg:h-[450px] object-contain bg-white p-2 md:p-4" onerror="this.src='https://placehold.co/800x450/18181b/ffffff?text=O+nama+Trubica'">
+                    <!-- POBOLJŠANI OKVIR SLIKE (Prilagođava se i ne ostavlja prazan prostor ako nema slike) -->
+                    <div class="relative w-full max-w-lg mx-auto lg:max-w-none">
+                        <div class="absolute -inset-3 bg-brand-primary/20 rounded-3xl transform rotate-2"></div>
+                        <div class="relative bg-[#0a0a0a] rounded-2xl shadow-2xl border border-gray-800 p-3 md:p-4">
+                            <img src="Caddy.jpg" alt="O nama Trubica - Caddy prijevoz" class="w-full h-auto max-h-[450px] object-contain rounded-xl bg-black" onerror="this.src='https://placehold.co/800x450/111111/eab308?text=Trubica+O+Nama'">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -469,7 +521,7 @@
                                 <i class="fa-solid fa-star mr-1"></i> Mega Top Ponuda
                             </span>
                             <h3 class="font-heading text-xl sm:text-2xl font-semibold text-white leading-tight">Vikend Paket: Prikolica za Motore</h3>
-                            <p class="text-gray-400 text-sm mt-1.5 leading-snug">Cijeli vikend (Pet popodne - Pon ujutro) po super cijeni od samo <strong class="text-brand-primary text-lg ml-1">60,00 €</strong></p>
+                            <p class="text-gray-400 text-sm mt-1.5 leading-snug">Cijeli vikend (Pet popodne - Pon ujutro) po super cijeni od samo <strong class="text-brand-primary text-lg ml-1">60,00 €</strong> <span class="line-through text-gray-500 text-xs ml-1">75,00 €</span></p>
                         </div>
                     </div>
                     <div class="w-full md:w-auto shrink-0">
@@ -481,14 +533,26 @@
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 text-center">
                 <h3 class="font-heading text-2xl font-bold text-brand-darker mb-8">Zavirite u našu opremu</h3>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                    <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Galerija slika 1" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-sm cursor-pointer hover:opacity-90 transition border border-gray-300" onclick="switchView('galerija')">
-                    <img src="najam-hladnjace (3).jpg" alt="Galerija slika 2" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-sm cursor-pointer hover:opacity-90 transition border border-gray-300" onclick="switchView('galerija')">
-                    <img src="najam-barskih-stolova.jpg" alt="Galerija slika 3" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-sm cursor-pointer hover:opacity-90 transition border border-gray-300" onclick="switchView('galerija')">
-                    <img src="najam_auta (2).jpg" alt="Galerija slika 4" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-sm cursor-pointer hover:opacity-90 transition hidden md:block border border-gray-300" onclick="switchView('galerija')">
-                    <img src="Najam sandučarke (3).jpg" alt="Galerija slika 5" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-sm cursor-pointer hover:opacity-90 transition hidden md:block border border-gray-300" onclick="switchView('galerija')">
-                    <img src="najam-sklopivih-stolova-bijeli_2.jpg" alt="Galerija slika 6" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-sm cursor-pointer hover:opacity-90 transition hidden md:block border border-gray-300" onclick="switchView('galerija')">
+                    <div class="bg-[#0a0a0a] rounded-xl border border-gray-300 p-1.5 shadow-sm hover:border-brand-primary transition cursor-pointer" onclick="switchView('galerija')">
+                        <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Galerija slika 1" class="w-full h-28 md:h-36 object-contain rounded-lg bg-black" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                    </div>
+                    <div class="bg-[#0a0a0a] rounded-xl border border-gray-300 p-1.5 shadow-sm hover:border-brand-primary transition cursor-pointer" onclick="switchView('galerija')">
+                        <img src="najam-hladnjace (3).jpg" alt="Galerija slika 2" class="w-full h-28 md:h-36 object-contain rounded-lg bg-black" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                    </div>
+                    <div class="bg-[#0a0a0a] rounded-xl border border-gray-300 p-1.5 shadow-sm hover:border-brand-primary transition cursor-pointer" onclick="switchView('galerija')">
+                        <img src="najam-sklopivih-stolova-crni.jpg" alt="Galerija slika 3" class="w-full h-28 md:h-36 object-contain rounded-lg bg-black" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                    </div>
+                    <div class="bg-[#0a0a0a] rounded-xl border border-gray-300 p-1.5 shadow-sm hover:border-brand-primary transition cursor-pointer hidden md:block" onclick="switchView('galerija')">
+                        <img src="najam_auta (2).jpg" alt="Galerija slika 4" class="w-full h-28 md:h-36 object-contain rounded-lg bg-black" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                    </div>
+                    <div class="bg-[#0a0a0a] rounded-xl border border-gray-300 p-1.5 shadow-sm hover:border-brand-primary transition cursor-pointer hidden md:block" onclick="switchView('galerija')">
+                        <img src="Najam sandučarke (3).jpg" alt="Galerija slika 5" class="w-full h-28 md:h-36 object-contain rounded-lg bg-black" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                    </div>
+                    <div class="bg-[#0a0a0a] rounded-xl border border-gray-300 p-1.5 shadow-sm hover:border-brand-primary transition cursor-pointer hidden md:block" onclick="switchView('galerija')">
+                        <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Galerija slika 6" class="w-full h-28 md:h-36 object-contain rounded-lg bg-black" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                    </div>
                 </div>
-                <button onclick="switchView('galerija')" class="font-heading font-semibold text-brand-darker hover:text-brand-primary transition border-b-2 border-brand-primary pb-1 inline-flex items-center">
+                <button onclick="switchView('galerija')" class="font-heading font-semibold text-brand-darker hover:text-brand-primary transition border-b-2 border-brand-primary pb-1 inline-flex items-center mt-2">
                     Više slika u galeriji <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
             </div>
@@ -570,8 +634,9 @@
 
                     <div class="relative bg-black rounded-2xl shadow-2xl flex flex-col md:flex-row h-full overflow-hidden border border-gray-800">
                         <div class="bg-[#0a0a0a] w-full md:w-2/5 p-6 md:p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-800 pt-10">
-                            <div class="w-full h-48 md:h-56 rounded-xl overflow-hidden border border-gray-700 shadow-lg mb-6 bg-[#0a0a0a] relative p-2">
-                                <img src="najam-hladnjace.jpg" alt="Hladnjača" class="w-full h-full object-contain">
+                            <!-- Premium Okvir Usluge -->
+                            <div class="w-full h-48 md:h-56 rounded-2xl overflow-hidden border border-gray-700 shadow-inner mb-6 bg-black p-2">
+                                <img src="najam-hladnjace.jpg" alt="Hladnjača" class="w-full h-full object-contain rounded-xl" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
                             </div>
                             <h3 class="font-heading text-3xl font-black text-white text-center uppercase tracking-tight leading-none mb-2">Najam</h3>
                             <h3 class="font-heading text-3xl font-black text-white text-center uppercase tracking-tight leading-none">Hladnjače</h3>
@@ -598,7 +663,11 @@
                             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-800 pt-4 mt-2">
                                 <div class="text-center sm:text-left">
                                     <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-0.5">Cijena najma (24h)</p>
-                                    <p class="font-heading text-3xl font-black text-brand-primary">60,00 € <span class="text-sm font-medium text-gray-500 ml-1">/ Popust za više dana</span></p>
+                                    <div class="flex items-baseline gap-2 justify-center sm:justify-start">
+                                        <span class="text-gray-500 line-through text-lg font-semibold">80,00 €</span>
+                                        <p class="font-heading text-3xl font-black text-brand-primary">60,00 €</p>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500">Popust za više dana</span>
                                 </div>
                                 <button onclick="switchView('rezervacija'); document.getElementById('booking-service-select').value = 'hladnjaca';" class="font-heading bg-red-600 hover:bg-red-700 text-white px-8 py-3.5 rounded-xl font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 w-full sm:w-auto">
                                     Rezerviraj Hladnjaču
@@ -619,14 +688,15 @@
                     <i class="fa-solid fa-arrow-left mr-2"></i> Nazad na sve usluge
                 </button>
                 <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border border-gray-800 flex flex-col lg:flex-row">
-                    <div class="lg:w-1/2 relative bg-[#0a0a0a] min-h-[350px] lg:min-h-[500px] flex items-center justify-center p-4">
-                        <div id="service-slider-container" class="w-full h-full relative">
-                            <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-full object-contain min-h-[350px] lg:min-h-[500px]">
+                    <!-- Dodan okvir za glavnu sliku u detaljima usluge -->
+                    <div class="lg:w-1/2 relative bg-[#0a0a0a] min-h-[350px] lg:min-h-[500px] flex items-center justify-center p-4 md:p-6">
+                        <div id="service-slider-container" class="w-full h-full relative border border-gray-800 rounded-2xl bg-black p-2 shadow-inner">
+                            <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-full object-contain rounded-xl" onerror="this.src='https://placehold.co/600x400/111111/eab308?text=Trubica'">
                         </div>
-                        <button onclick="changeServiceSlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition">
+                        <button onclick="changeServiceSlide(-1)" class="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
-                        <button onclick="changeServiceSlide(1)" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition">
+                        <button onclick="changeServiceSlide(1)" class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
@@ -685,7 +755,7 @@
 
                     <div class="bg-brand-accent/50 border-l-4 border-brand-primary p-4 mb-8 rounded-r-lg">
                         <p class="text-xs text-black font-medium">
-                            <strong>Napomena o akcijama:</strong> U nastavku je naveden zvanični cjenik s uračunatim akcijama i popustima. Sve prikolice su redovito održavane.
+                            <strong>Napomena o akcijama:</strong> U nastavku je naveden zvanični cjenik s uračunatim akcijama i sidrenim cijenama. Sve prikolice su redovito održavane.
                         </p>
                     </div>
 
@@ -782,7 +852,7 @@
 
                     <div class="border-t border-gray-200 pt-6 mt-8 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-500 gap-4">
                         <div>
-                            <p><strong>Uvjeti najma:</strong> Za najam prikolice potrebna je važeća osobna iskaznica i vozačka dozvola. Kaucija za prikolicu iznosi 50,00 €, a za hladnjaču 150,00 €.</p>
+                            <p><strong>Uvjeti najma:</strong> Za najam prikolice potrebna je važeća osobna iskaznica i vozačka dozvola B kategorije. Kaucija za prikolicu iznosi 50,00 €, a za hladnjaču 150,00 €.</p>
                         </div>
                         <div class="text-center sm:text-right whitespace-nowrap font-medium text-black">
                             TRUBICA j.d.o.o. Zagreb <br>
@@ -826,12 +896,15 @@
                 </button>
                 
                 <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border border-gray-800 flex flex-col lg:flex-row relative">
-                    <div class="lg:w-3/5 bg-[#0a0a0a] relative group min-h-[350px] lg:min-h-[550px] p-2 flex items-center justify-center">
-                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-full object-contain min-h-[350px] lg:min-h-[550px]">
-                        <button onclick="changeGallerySlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10">
+                    <!-- Dodan okvir i za pregled pojedine slike -->
+                    <div class="lg:w-3/5 bg-[#0a0a0a] relative group min-h-[350px] lg:min-h-[550px] p-4 flex items-center justify-center">
+                        <div class="w-full h-full border border-gray-800 rounded-2xl bg-black p-2 shadow-inner">
+                            <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-full object-contain rounded-xl" onerror="this.src='https://placehold.co/800x600/111111/eab308?text=Trubica'">
+                        </div>
+                        <button onclick="changeGallerySlide(-1)" class="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10">
                             <i class="fa-solid fa-chevron-left text-xl"></i>
                         </button>
-                        <button onclick="changeGallerySlide(1)" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10">
+                        <button onclick="changeGallerySlide(1)" class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-brand-primary text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10">
                             <i class="fa-solid fa-chevron-right text-xl"></i>
                         </button>
                     </div>
@@ -1011,24 +1084,23 @@
 
     </main>
 
-    <!-- APP INSTALL BANNER (Novi okvir) -->
-    <div id="app-install-banner" class="fixed bottom-0 left-0 right-0 bg-brand-secondary/95 backdrop-blur-md border-t-2 border-brand-primary z-[60] transform translate-y-full transition-transform duration-500 shadow-[0_-10px_20px_rgba(0,0,0,0.3)]">
-        <div class="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex flex-row items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black rounded-xl border border-gray-700 flex items-center justify-center shrink-0 shadow-lg p-1">
-                    <img src="Gemini_Generated_Image_wuqpsgwuqpsgwuqp.jpg" alt="App Icon" class="w-full h-full object-contain rounded-lg">
-                </div>
-                <div>
-                    <h4 class="text-white font-heading font-bold text-sm sm:text-base leading-tight">Aplikacija Trubica</h4>
-                    <p class="text-gray-400 text-xs sm:text-sm mt-0.5">Dodaj na početni zaslon</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-                <button onclick="closeAppInstall()" class="text-gray-400 hover:text-white text-xs sm:text-sm font-medium transition py-2 px-1">Odustani</button>
-                <button onclick="installApp()" class="bg-brand-primary hover:bg-brand-primaryHover text-black font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg shadow-md transition transform hover:scale-105 uppercase tracking-wide">
-                    Instaliraj
-                </button>
-            </div>
+    <!-- APP INSTALL BANNER (Centriran i elegantan modal) -->
+    <div id="app-install-banner" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[60] w-[90%] max-w-sm bg-brand-darker border-2 border-brand-primary rounded-2xl shadow-2xl p-6 flex flex-col items-center text-center opacity-0 pointer-events-none scale-95 transition-all duration-300">
+        <button onclick="closeAppInstall()" class="absolute top-3 right-3 text-gray-400 hover:text-white transition text-lg">
+            <i class="fa-solid fa-times"></i>
+        </button>
+        <div class="w-16 h-16 bg-black rounded-2xl border border-gray-700 flex items-center justify-center mb-4 shadow-lg p-1.5">
+            <img src="Gemini_Generated_Image_wuqpsgwuqpsgwuqp.jpg" alt="App Icon" class="w-full h-full object-contain rounded-xl">
+        </div>
+        <h4 class="text-white font-heading font-bold text-xl leading-tight mb-2">Trubica Aplikacija</h4>
+        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Dodajte nas na početni zaslon vašeg uređaja za brži i lakši pristup uslugama i rezervacijama.</p>
+        <div class="flex gap-3 w-full">
+            <button onclick="closeAppInstall()" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 rounded-xl transition text-sm">
+                Odustani
+            </button>
+            <button onclick="installApp(event)" class="flex-1 bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-3 rounded-xl transition text-sm uppercase tracking-wide shadow-md">
+                Instaliraj
+            </button>
         </div>
     </div>
 
@@ -1134,32 +1206,32 @@
                     <span class="footer-heading">Gale<span>rija</span></span>
                     <span class="footer-title-line"></span>
                     <div class="grid grid-cols-3 gap-2 w-fit">
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(0);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Prikolica" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(0);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="Najam sandučarke (3).jpg" alt="Sandučarka" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(1);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="Najam sandučarke (3).jpg" alt="Sandučarka" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(1);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="Najam sandučarke.jpg" alt="Sandučarka" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(2);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Barski stolovi" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(2);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Prikolica auto" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(3);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Bijeli stol" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(3);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="najam-prikolice-prijevoz-automobila (2).jpg" alt="Prikolica auto cesta" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(4);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="najam-sklopivih-stolova-crni.jpg" alt="Crni stol" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(4);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="najam-prikolica-prijevoz (3).jpg" alt="Prikolica motor" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(5);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="najam-hladnjace.jpg" alt="Hladnjača" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(5);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="najam-hladnjace.jpg" alt="Hladnjača" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(6);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="najam-hladnjace (4).jpg" alt="Hladnjača unutrašnjost" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(6);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="najam-hladnjace (3).jpg" alt="Hladnjača" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(7);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="najam_auta.jpg" alt="Hyundai" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(12);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="najam-sklopivih-stolova-crni.jpg" alt="Crni stol" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
-                        <div onclick="switchView('galerija'); openImageDetailsByIndex(8);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group">
-                            <img src="prijevoz-motora-quadova-sanducarka (2).jpg" alt="Caddy Quad" class="w-full h-full object-cover">
+                        <div onclick="switchView('galerija'); openImageDetailsByIndex(13);" class="w-14 h-14 rounded overflow-hidden cursor-pointer border border-gray-700 hover:border-brand-primary transition shadow-sm relative group bg-black p-0.5">
+                            <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Bijeli stol" class="w-full h-full object-contain rounded-sm" onerror="this.src='https://placehold.co/100x100/111111/eab308?text=Trubica'">
                         </div>
                     </div>
                 </div>
@@ -1186,8 +1258,8 @@
                 id: 'sanducarka',
                 title: 'Najam Sandučarke',
                 shortDesc: 'Dimenzija: 200D x 100Š x 55V',
-                price: '20,00 €',
-                oldPrice: '',
+                price: '20,00 € / 24h',
+                oldPrice: '30,00 €',
                 desc: 'Auto prikolica bez cerade (Sandučarka).\nDimenzije: 200D x 100Š x 55V.\nIdealna za prijevoz građevinskog materijala, namještaja ili glomaznog otpada.',
                 features: ['Dimenzije 200x100x55 cm', 'Redovito održavana'],
                 images: [
@@ -1201,10 +1273,10 @@
             {
                 id: 'prikolica-motori',
                 title: 'Najam Prikolica za Motore i Quadove',
-                shortDesc: 'Specijalizirane prikolice za siguran transport vaših ljubimaca na dva ili četiri kotača.',
+                shortDesc: 'Specijalizirane prikolice za siguran transport vaših ljubimaca.',
                 price: 'Od 25,00 €',
                 oldPrice: '',
-                desc: 'Najam prikolica za prijevoz motora i quadova.\nPrikolica za prijevoz motora: 25,00 € / 24h\nPrikolica za prijevoz quadova: 40,00 € / 24h',
+                desc: 'Najam prikolica za prijevoz motora i quadova.\nPrikolica za prijevoz motora: 25,00 € / 24h\nVikend paket (Petak popodne - Ponedjeljak ujutro): 60,00 €\nPrikolica za prijevoz quadova: 40,00 € / 24h',
                 features: ['Siguran transport motora', 'Prijevoz quadova', 'Pouzdan i stabilan dizajn'],
                 images: [
                     'najam-prikolica-prijevoz (3).jpg',
@@ -1218,8 +1290,8 @@
                 id: 'prikolica-auti',
                 title: 'Najam Prikolice za Prijevoz Automobila',
                 shortDesc: 'Nosivost 2700kg, 4,2x2m, za B kategoriju.',
-                price: '40,00 €',
-                oldPrice: '',
+                price: '40,00 € / 24h',
+                oldPrice: '55,00 €',
                 desc: 'Iznajmljujemo prikolicu za prijevoz automobila nosivosti 2700kg, utovarni dio površine 4,2x2m. Dvoosovinka, stabilna i sigurna u vožnji. Za vuču iste je potrebna B kategorija. Za više dana odobravamo popust!',
                 features: ['Nosivost 2700kg', 'Dimenzije 4,2 x 2m', 'Potrebna B kategorija', 'Redovito održavano'],
                 images: [
@@ -1233,8 +1305,8 @@
                 id: 'hladnjaca',
                 title: 'Najam Hladnjače',
                 shortDesc: 'OVO HLADI DA SE ZZZZMZNEŠ. Dimenzije 266x155cm.',
-                price: '60,00 €',
-                oldPrice: '',
+                price: '60,00 € / 24h',
+                oldPrice: '80,00 €',
                 desc: 'Najam hladnjače za sve vaše organizirane proslave(rođendani, momačke, djevojačke, krstitke, krizme, prve pričesti, moto susreti…). Radi na monofaznu struju(kućna utičnica), hladi u rasponu od 2 do 10 stupnjeva ovisno o vašim zahtjevima.\nSvojim kapacitetom zamjenjuje 10 ugostiteljskih frižidera. Dimenzije hladnjače 266x155cm.\nMoguća dostava našim vozilom van grada Zagreba po cijeni od 0,70€/km plus troškovi cestarine.\nNa području grada Zagreba dostava je besplatna!\nCijena je 60€/24h, popust za više dana.\nMogućnost izdavanja R1 računa!\nReagirajte brzo jer su nam neki termini već popunjeni!\nP.S. nismo u sustavu PDV-a, izdajemo račun za svaku našu uslugu.',
                 features: ['Kapacitet 10 frižidera', 'Hlađenje 2 do 10°C', 'Besplatna dostava u ZG', 'Popust na više dana'],
                 images: [
@@ -1282,8 +1354,8 @@
                 id: 'barski-stolovi',
                 title: 'Najam Barskih Stolova',
                 shortDesc: 'Visoki barski stolovi s bijelim i crnim navlakama za evente i proslave.',
-                price: '10,00 €',
-                oldPrice: '',
+                price: '10,00 € / kom',
+                oldPrice: '15,00 €',
                 desc: 'Iznajmljujemo visoke barske stolove s bijelim i crnim rastezljivim navlakama. Idealno za vjenčanja, rođendane, domjenke i sve vrste proslava.',
                 features: ['Barski stol s navlakom', 'Stabilna konstrukcija', 'Za sve vrste proslava'],
                 images: [
@@ -1300,15 +1372,20 @@
             grid.innerHTML = '';
 
             servicesData.forEach(srv => {
+                const oldPriceHtml = srv.oldPrice ? `<span class="text-gray-500 line-through text-sm font-semibold mr-2">${srv.oldPrice}</span>` : '';
                 const html = `
                     <div class="bg-black rounded-2xl shadow-xl overflow-hidden border border-gray-800 flex flex-col hover:border-brand-primary transition duration-300">
                         <div class="h-56 bg-[#0a0a0a] overflow-hidden relative group p-3 flex items-center justify-center">
-                            <img src="${srv.images[0]}" alt="${srv.title}" class="w-full h-full object-contain group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/111111/eab308?text=Slika'">
+                            <!-- Premium Okvir -->
+                            <div class="w-full h-full border border-gray-800 rounded-xl bg-black shadow-inner p-1">
+                                <img src="${srv.images[0]}" alt="${srv.title}" class="w-full h-full object-contain group-hover:scale-105 transition duration-500 rounded-lg" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                            </div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow text-white border-t border-gray-900">
                             <h3 class="font-heading text-xl font-semibold mb-2">${srv.title}</h3>
                             <p class="text-gray-400 text-sm mb-4 flex-grow">${srv.shortDesc}</p>
-                            <div class="flex justify-between items-center mb-5">
+                            <div class="flex items-center mb-5">
+                                ${oldPriceHtml}
                                 <span class="text-brand-primary font-bold text-xl">${srv.price}</span>
                             </div>
                             <button onclick="openServiceDetail('${srv.id}')" class="font-heading w-full bg-brand-primary text-black hover:bg-brand-primaryHover font-bold py-3 rounded-xl transition shadow-md">
@@ -1378,8 +1455,7 @@
             { category: "prijevoz", title: "Prijevoz Quadova", desc: "Siguran ukrcaj i transport quadova.", img: "prijevoz-motora-quadova-sanducarka (2).jpg", service: "prijevoz" },
             { category: "prijevoz", title: "Najam Osobnih Vozila", desc: "Hyundai spreman za najam.", img: "najam_auta.jpg", service: "osobna-vozila" },
             { category: "event", title: "Najam Barskih Stolova", desc: "Visoki barski stolovi s navlakama.", img: "najam-sklopivih-stolova-crni.jpg", service: "barski-stolovi" },
-            { category: "event", title: "Barski stol - bijela navlaka", desc: "Elegantni barski stol s bijelom navlakom i dekoracijom.", img: "najam-sklopivih-stolova-bijeli.jpg", service: "barski-stolovi" },
-            { category: "event", title: "Barski stol - crna navlaka", desc: "Visoki barski stol s crnom navlakom i čašama.", img: "najam-sklopivih-stolova-crni.jpg", service: "barski-stolovi" }
+            { category: "event", title: "Barski stol - bijela navlaka", desc: "Elegantni barski stol s bijelom navlakom i dekoracijom.", img: "najam-sklopivih-stolova-bijeli.jpg", service: "barski-stolovi" }
         ];
 
         let filteredGalleryData = [];
@@ -1392,11 +1468,17 @@
             filteredGalleryData = category === 'sve' ? galleryData : galleryData.filter(item => item.category === category);
             
             filteredGalleryData.forEach((item, index) => {
+                // Global index
+                const globalIndex = galleryData.findIndex(g => g.img === item.img);
+                
                 const html = `
                     <div class="bg-black rounded-2xl shadow-xl overflow-hidden border border-gray-800 group cursor-pointer hover:shadow-2xl hover:border-brand-primary transition-all"
-                         onclick="openImageDetailsByIndex(${index})">
-                        <div class="h-64 bg-[#0a0a0a] overflow-hidden relative p-2 flex items-center justify-center">
-                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-contain group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/111111/eab308?text=Slika'">
+                         onclick="openImageDetailsByIndex(${globalIndex})">
+                        <div class="h-64 bg-[#0a0a0a] overflow-hidden relative p-3 flex items-center justify-center">
+                            <!-- Premium Okvir -->
+                            <div class="w-full h-full border border-gray-800 rounded-xl bg-black shadow-inner p-1">
+                                <img src="${item.img}" alt="${item.title}" class="w-full h-full object-contain group-hover:scale-105 transition duration-500 rounded-lg" onerror="this.src='https://placehold.co/400x300/111111/eab308?text=Trubica'">
+                            </div>
                         </div>
                         <div class="p-5 text-center border-t border-gray-900">
                             <h3 class="font-heading text-lg font-semibold text-white">${item.title}</h3>
@@ -1410,7 +1492,8 @@
 
         function openImageDetailsByIndex(index) {
             currentDetailIndex = index;
-            const item = filteredGalleryData[index];
+            const item = galleryData[index];
+            if(!item) return;
             document.getElementById('detail-title').innerText = item.title;
             document.getElementById('detail-desc').innerText = item.desc;
             document.getElementById('detail-img').src = item.img;
@@ -1420,8 +1503,8 @@
 
         function changeGallerySlide(direction) {
             currentDetailIndex += direction;
-            if (currentDetailIndex < 0) currentDetailIndex = filteredGalleryData.length - 1;
-            if (currentDetailIndex >= filteredGalleryData.length) currentDetailIndex = 0;
+            if (currentDetailIndex < 0) currentDetailIndex = galleryData.length - 1;
+            if (currentDetailIndex >= galleryData.length) currentDetailIndex = 0;
             openImageDetailsByIndex(currentDetailIndex);
         }
 
@@ -1460,6 +1543,9 @@
             updateLiveDateTime();
             initVisitorCounter();
             setInterval(updateLiveDateTime, 60000);
+            
+            // Prikaz modala za aplikaciju nakon 4 sekunde
+            setTimeout(showAppInstallBanner, 4000);
         });
 
         let currentHeroSlide = 0;
@@ -1633,11 +1719,11 @@
 
         // APP INSTALL LOGIKA
         function showAppInstallBanner() {
-            // Provjeri je li banner već zatvoren u ovoj sesiji kako ne bi dosađivao
             if (!sessionStorage.getItem('trubica_app_banner_closed')) {
                 const banner = document.getElementById('app-install-banner');
                 if (banner) {
-                    banner.classList.remove('translate-y-full');
+                    banner.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+                    banner.classList.add('opacity-100', 'pointer-events-auto', 'scale-100');
                 }
             }
         }
@@ -1645,20 +1731,19 @@
         function closeAppInstall() {
             const banner = document.getElementById('app-install-banner');
             if (banner) {
-                banner.classList.add('translate-y-full');
+                banner.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
+                banner.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
                 sessionStorage.setItem('trubica_app_banner_closed', 'true');
             }
         }
 
-        function installApp() {
-            // Ovdje bi inače išla stvarna PWA 'beforeinstallprompt' logika
-            // S obzirom da je ovo demo, simulirat ćemo instalaciju
+        function installApp(event) {
             const btn = event.currentTarget;
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
             
             setTimeout(() => {
-                btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-                btn.classList.remove('bg-brand-primary');
+                btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Instalirano';
+                btn.classList.remove('bg-brand-primary', 'text-black');
                 btn.classList.add('bg-green-500', 'text-white');
                 
                 setTimeout(() => {
@@ -1666,11 +1751,6 @@
                 }, 1500);
             }, 1000);
         }
-
-        // Dodano u postojeći window load event (prikaži banner nakon 4 sekunde)
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(showAppInstallBanner, 4000);
-        });
 
     </script>
 </body>
