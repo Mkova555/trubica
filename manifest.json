@@ -1,0 +1,21 @@
+{
+"name": "Trubica",
+"short_name": "Trubica",
+"start_url": "./index.html",
+"display": "standalone",
+"background_color": "#000000",
+"theme_color": "#eab308",
+"description": "Profesionalan najam prikolica i hladnjača - Zagreb",
+"icons": [
+{
+"src": "logo.jpg",
+"sizes": "192x192",
+"type": "image/jpeg"
+},
+{
+"src": "logo.jpg",
+"sizes": "512x512",
+"type": "image/jpeg"
+}
+]
+}

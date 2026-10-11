@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trubica - Profesionalan i pouzdan najam prikolica i hladnjača Zagreb</title>
     
+    <!-- PWA Manifest & Ikone -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="logo.jpg">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -235,12 +240,12 @@
         <!-- 1. NASLOVNA STRANICA -->
         <section id="view-naslovna" class="page-view active">
             
-            <!-- Hero Slider (Slike bez okvira) -->
+            <!-- Hero Slider -->
             <div class="relative w-full bg-brand-darker h-[550px] sm:h-[550px] md:h-[650px] overflow-hidden">
                 <div id="slides-container" class="relative w-full h-full">
                     
                     <div class="hero-slide absolute inset-0 flex flex-col md:flex-row items-center justify-between opacity-100 z-10" id="slide-0">
-                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-[#0a0a0a]">
+                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0">
                             <img src="najam-prikolice-prijevoz-automobila (2).jpg" alt="Najam prikolica" class="w-full h-full object-cover">
                         </div>
                         <div class="w-full md:w-1/2 h-[55%] md:h-full px-6 sm:px-10 lg:px-16 z-20 relative text-left py-6 md:py-0 bg-brand-darker flex flex-col justify-center">
@@ -259,7 +264,7 @@
                     </div>
 
                     <div class="hero-slide absolute inset-0 flex flex-col md:flex-row items-center justify-between opacity-0 -z-10" id="slide-1">
-                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-[#0a0a0a]">
+                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0">
                             <img src="Najam sandučarke (3).jpg" alt="Najam Sandučarke" class="w-full h-full object-cover">
                         </div>
                         <div class="w-full md:w-1/2 h-[55%] md:h-full px-6 sm:px-10 lg:px-16 z-20 relative text-left py-6 md:py-0 bg-brand-darker flex flex-col justify-center">
@@ -278,7 +283,7 @@
                     </div>
 
                     <div class="hero-slide absolute inset-0 flex flex-col md:flex-row items-center justify-between opacity-0 -z-10" id="slide-2">
-                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0 bg-[#0a0a0a]">
+                        <div class="w-full md:w-1/2 h-[45%] md:h-full relative z-0">
                             <img src="najam-hladnjace.jpg" alt="Mobilna hladnjača" class="w-full h-full object-cover">
                         </div>
                         <div class="w-full md:w-1/2 h-[55%] md:h-full px-6 sm:px-10 lg:px-16 z-20 relative text-left py-6 md:py-0 bg-brand-darker flex flex-col justify-center">
@@ -453,10 +458,14 @@
                             <div class="bg-black p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam vozila</div>
                         </div>
                     </div>
-                    <!-- Caddy Slika prilagođena, bez crnog/bijelog okvira -->
-                    <div class="relative w-full h-[300px] md:h-[400px] flex items-center justify-center">
-                        <img src="Caddy.jpg" alt="O nama Trubica - Caddy prijevoz" class="w-full h-full object-contain">
+                    
+                    <!-- Prekrasan okvir za Caddy -->
+                    <div class="relative w-full flex items-center justify-center">
+                        <div class="bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-200">
+                            <img src="Caddy.jpg" alt="O nama Trubica - Caddy prijevoz" class="w-full h-64 sm:h-80 md:h-[400px] object-contain rounded-lg">
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -518,12 +527,12 @@
                         </span>
                     </div>
 
-                    <div class="relative bg-black rounded-2xl shadow-2xl flex flex-col md:flex-row h-full overflow-hidden border-2 border-brand-primary text-white">
-                        <div class="w-full md:w-2/5 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-800 relative bg-black">
+                    <div class="relative bg-white rounded-2xl shadow-2xl border-[3px] border-brand-primary flex flex-col md:flex-row h-full overflow-hidden">
+                        <div class="w-full md:w-2/5 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-200 bg-white">
                             <img src="najam-hladnjace.jpg" alt="Hladnjača" class="w-full h-full object-cover min-h-[250px]">
                         </div>
 
-                        <div class="p-6 md:p-8 w-full md:w-3/5 flex flex-col justify-between pt-10 bg-black">
+                        <div class="p-6 md:p-8 w-full md:w-3/5 flex flex-col justify-between pt-10 bg-black text-white">
                             <div>
                                 <h3 class="font-heading text-3xl font-black text-white uppercase tracking-tight leading-none mb-4">Najam Hladnjače</h3>
                                 <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-5">
@@ -568,8 +577,8 @@
                 <button onclick="switchView('usluge')" class="font-heading inline-flex items-center text-gray-600 hover:text-black font-bold transition mb-8 cursor-pointer">
                     <i class="fa-solid fa-arrow-left mr-2"></i> Nazad na sve usluge
                 </button>
-                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col lg:flex-row text-white">
-                    <div class="lg:w-1/2 relative min-h-[350px] lg:min-h-[500px]">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border-[3px] border-brand-primary flex flex-col lg:flex-row">
+                    <div class="lg:w-1/2 relative bg-white min-h-[350px] lg:min-h-[500px]">
                         <div id="service-slider-container" class="w-full h-full relative">
                             <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-full object-cover min-h-[350px] lg:min-h-[500px]">
                         </div>
@@ -580,7 +589,7 @@
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
-                    <div class="lg:w-1/2 p-8 md:p-12 bg-black flex flex-col justify-between">
+                    <div class="lg:w-1/2 p-8 md:p-12 bg-black flex flex-col justify-between text-white">
                         <div>
                             <h2 id="service-detail-title" class="font-heading text-3xl font-bold text-white mb-4">Naslov Usluge</h2>
                             <div class="mb-6 pb-6 border-b border-gray-800 flex items-center gap-4">
@@ -621,7 +630,7 @@
                 <div id="pdf-printable-content" class="bg-white text-gray-800 p-8 md:p-12 rounded-xl shadow-xl border border-gray-200 font-sans relative">
                     <div class="flex flex-col sm:flex-row justify-between items-start border-b-2 border-black pb-6 mb-8 gap-4">
                         <div>
-                            <img src="Gemini_Generated_Image_wuqpsgwuqpsgwuqp.jpg" alt="Trubica Logo" class="h-12 sm:h-14 w-auto object-contain mb-2">
+                            <img src="logo.jpg" alt="Trubica Logo" class="h-12 sm:h-14 w-auto object-contain mb-2">
                             <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">TRUBICA j.d.o.o. za usluge i trgovinu</p>
                             <p class="text-xs text-gray-500">OIB: 98765432101 | Zagreb, Hrvatska</p>
                         </div>
@@ -775,8 +784,8 @@
                     Nazad na galeriju
                 </button>
                 
-                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col lg:flex-row relative text-white">
-                    <div class="lg:w-3/5 relative min-h-[350px] lg:min-h-[550px] bg-black">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border-[3px] border-brand-primary flex flex-col lg:flex-row relative">
+                    <div class="lg:w-3/5 bg-white relative group min-h-[350px] lg:min-h-[550px]">
                         <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-full object-cover min-h-[350px] lg:min-h-[550px]" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
                         <button onclick="changeGallerySlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left text-xl"></i>
@@ -785,7 +794,7 @@
                             <i class="fa-solid fa-chevron-right text-xl"></i>
                         </button>
                     </div>
-                    <div class="lg:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-black border-t lg:border-t-0 lg:border-l border-gray-800">
+                    <div class="lg:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-black text-white border-t lg:border-t-0 lg:border-l border-gray-800">
                         <h2 id="detail-title" class="font-heading text-3xl font-bold text-white mb-4">Naslov...</h2>
                         <p id="detail-desc" class="text-gray-300 text-base leading-relaxed mb-8 border-l-4 border-brand-primary pl-4 font-medium">Opis...</p>
                         <button id="detail-link" onclick="" class="font-heading w-full bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-4 px-6 rounded-xl transition shadow-md flex items-center justify-center text-lg">
@@ -966,8 +975,8 @@
         <button onclick="closeAppInstall()" class="absolute top-3 right-3 text-gray-400 hover:text-brand-primary transition text-lg">
             <i class="fa-solid fa-times"></i>
         </button>
-        <div class="w-16 h-16 bg-white rounded-2xl border-2 border-brand-primary flex items-center justify-center mb-4 shadow-sm p-1.5">
-            <img src="logo.jpg" alt="App Icon" class="w-full h-full object-contain rounded-xl">
+        <div class="w-24 h-24 mb-4 mx-auto flex items-center justify-center">
+            <img src="logo.jpg" alt="Trubica Logo" class="w-full h-full object-contain rounded-2xl drop-shadow-lg">
         </div>
         <h4 class="text-white font-heading font-bold text-xl leading-tight mb-2">Trubica Aplikacija</h4>
         <p id="app-install-text" class="text-gray-300 text-sm mb-6 leading-relaxed">Dodajte nas na početni zaslon vašeg uređaja za brži i lakši pristup uslugama i rezervacijama.</p>
@@ -1116,7 +1125,7 @@
             
             <div class="flex flex-col justify-center items-center text-xs gap-3 mt-8">
                 <div class="text-gray-400 text-center text-xs font-sans">
-                    &copy; 2026 TRUBICA j.d.o.o. za usluge. Sva prava pridržana. 
+                    &copy; 2026 TRUBICA j.do.o. za usluge. Sva prava pridržana. 
                     <a href="#" onclick="event.preventDefault(); switchView('pravne-napomene')" class="hover:text-brand-primary transition underline font-bold">Pravne napomene</a> | 
                     Izrađeno za <a href="https://trubica.hr" target="_blank" class="hover:text-brand-primary transition font-bold">Trubica.hr</a>
                 </div>
@@ -1251,11 +1260,11 @@
             servicesData.forEach(srv => {
                 const oldPriceHtml = srv.oldPrice ? `<span class="text-gray-500 line-through text-sm font-bold mr-2">${srv.oldPrice}</span>` : '';
                 const html = `
-                    <div class="bg-black rounded-2xl shadow-soft border-2 border-brand-primary flex flex-col hover:shadow-lg transition duration-300 overflow-hidden group">
+                    <div class="bg-white rounded-2xl shadow-soft border-[3px] border-brand-primary flex flex-col hover:shadow-lg transition duration-300 overflow-hidden group">
                         <div class="h-48 md:h-56 overflow-hidden relative">
-                            <img src="${srv.images[0]}" alt="${srv.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x300/18181b/eab308?text=Trubica'">
+                            <img src="${srv.images[0]}" alt="${srv.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x300/ffffff/eab308?text=Trubica'">
                         </div>
-                        <div class="p-6 flex flex-col flex-grow bg-black">
+                        <div class="p-6 flex flex-col flex-grow bg-black text-white">
                             <h3 class="font-heading text-xl font-bold text-white mb-2">${srv.title}</h3>
                             <p class="text-gray-300 text-sm mb-4 flex-grow font-medium">${srv.shortDesc}</p>
                             <div class="flex items-center mb-5">
@@ -1345,10 +1354,10 @@
                 const globalIndex = galleryData.findIndex(g => g.img === item.img);
                 
                 const html = `
-                    <div class="bg-black rounded-2xl shadow-xl overflow-hidden border-2 border-brand-primary group cursor-pointer hover:shadow-2xl hover:border-yellow-400 transition-all text-white flex flex-col"
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-[3px] border-brand-primary group cursor-pointer hover:shadow-2xl transition-all flex flex-col"
                          onclick="openImageDetailsByIndex(${globalIndex})">
                         <div class="h-64 overflow-hidden relative">
-                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x300/18181b/eab308?text=Trubica'">
+                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x300/ffffff/eab308?text=Trubica'">
                         </div>
                         <div class="p-5 text-center bg-black flex-grow">
                             <h3 class="font-heading text-lg font-bold text-white">${item.title}</h3>
@@ -1412,6 +1421,13 @@
             e.preventDefault();
             deferredPrompt = e;
         });
+
+        // Registracija Service Workera za PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log('Service Worker registracija nije uspjela', err));
+            });
+        }
 
         window.addEventListener('DOMContentLoaded', () => {
             renderServicesGrid();
@@ -1593,7 +1609,7 @@
             loadGalleryGrid(category);
         }
 
-        // APP INSTALL LOGIKA S PWA PODRŠKOM
+        // APP INSTALL LOGIKA
         function showAppInstallBanner() {
             if (!sessionStorage.getItem('trubica_app_banner_closed')) {
                 const banner = document.getElementById('app-install-banner');
@@ -1632,3 +1648,48 @@
     </script>
 </body>
 </html>
+```
+
+### 2. PWA Manifest fajl (`manifest.json`)
+Stvori novu datoteku u istom folderu (gdje ti je i index.html) i nazovi je `manifest.json`. Ovaj kod reci mobitelu da je tvoja stranica web aplikacija.
+
+```json:Trubica - Profesionalan i pouzdan najam prikolica i hladnjača Zagreb:manifest.json
+{
+  "name": "Trubica",
+  "short_name": "Trubica",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#eab308",
+  "description": "Profesionalan najam prikolica i hladnjača - Zagreb",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
+```
+
+### 3. Service Worker fajl (`sw.js`)
+Stvori još jednu novu datoteku u istom folderu i nazovi je `sw.js`. Ovo je obavezna tehnička pozadinska datoteka koja je potrebna modernim mobitelima kako bi dozvolili instalaciju.
+
+```javascript:Trubica - Profesionalan i pouzdan najam prikolica i hladnjača Zagreb:sw.js
+// Osnovni Service Worker za ispunjavanje PWA standarda
+self.addEventListener('install', (e) => {
+    console.log('Service Worker: Instaliran');
+});
+
+self.addEventListener('fetch', (e) => {
+    // Samo prolaz, ne blokiramo niti keširamo promet trenutno
+    // To je dovoljno da gumb za instalaciju proradi
+});
+```
+
+Sada imaš savršeno točan HTML sa vraćenim tvojim omiljenim okvirom za sliku, očišćenim logom i dodatnim datotekama (`manifest.json` i `sw.js`) spremnim za instalaciju aplikacije.
