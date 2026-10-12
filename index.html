@@ -164,7 +164,7 @@
             <div class="flex justify-between h-24 items-center">
                 
                 <div class="flex-shrink-0 flex items-center cursor-pointer py-1" onclick="switchView('naslovna')">
-                    <img src="logo.jpg" alt="Trubica Logo" class="h-12 sm:h-14 md:h-16 lg:h-[76px] w-auto object-contain transition-transform duration-300 hover:scale-105">
+                    <img src="logo.jpg" alt="Trubica Logo" class="h-12 sm:h-14 md:h-16 lg:h-[76px] w-auto object-contain transition-transform duration-300 hover:scale-105" onerror="this.src='logo.ico'">
                 </div>
 
                 <div class="hidden lg:flex items-center space-x-3 xl:space-x-5 ml-auto">
@@ -238,7 +238,7 @@
         <!-- 1. NASLOVNA STRANICA -->
         <section id="view-naslovna" class="page-view active">
             
-            <!-- Hero Slider (Slike bez okvira) -->
+            <!-- Hero Slider -->
             <div class="relative w-full bg-brand-darker h-[550px] sm:h-[550px] md:h-[650px] overflow-hidden">
                 <div id="slides-container" class="relative w-full h-full">
                     
@@ -442,23 +442,24 @@
                     <div class="w-20 h-1 bg-brand-primary mx-auto mt-4 rounded"></div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
-                    <div>
+                <!-- O nama redak: Lijeva strana tekst, Desna strana slika kombija u punoj visini -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch mb-24">
+                    <div class="flex flex-col justify-center">
                         <span class="text-brand-primary font-bold text-xs uppercase tracking-widest mb-2 block">Više od 12 godina iskustva</span>
                         <h3 class="font-heading text-2xl font-bold text-brand-darker mb-4">O NAŠOJ TVRTKI<br>Najbolje rješenje za usluge najam i prijevoz</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">
                             Trubica j.d.o.o. je tvrtka osnovana u lipnju 2016. Mlada smo i inovativna tvrtka koja nudi široki spektar usluga sa velikim brojem zadovoljnih korisnika koji nam se vraćaju. Nudimo usluge prijevoza na području grada Zagreba, Republike Hrvatske te bližih zemalja EU (Slovenija, Austrija, Italija, Grčka, Njemačka). Razlikujemo se od drugih jer prijevoz obavljamo manjim dostavnim vozilom VW Caddy s kojim smo u mogućnosti ući u uske prostore te podzemne garaže. Garantiramo kvalitetu i profesionalnost prilikom izvođenja svake naše usluge. Slobodno nam se obratite radi BESPLATNE ponude koju ćemo izraditi za Vas. Obratite nam se sa povjerenjem i postanite jedan od stotinu naših zadovoljnih korisnika.
                         </p>
-                        <div class="grid grid-cols-2 gap-4 mt-6 text-sm font-bold text-white">
+                        <div class="grid grid-cols-2 gap-4 mt-2 text-sm font-bold text-white">
                             <div class="bg-black p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Caddy prijevoz</div>
                             <div class="bg-black p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam prikolica</div>
                             <div class="bg-black p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam barskih stolova</div>
                             <div class="bg-black p-4 rounded-xl shadow-soft border-l-4 border-brand-primary"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Najam vozila</div>
                         </div>
                     </div>
-                    <!-- Caddy Slika prilagođena, bez crnog/bijelog okvira -->
-                    <div class="relative w-full h-[300px] md:h-[400px] flex items-center justify-center">
-                        <img src="Caddy.png" alt="O nama Trubica - Caddy prijevoz" class="w-full h-full object-contain">
+                    <!-- Slika kombija ispunjava cijelu visinu i širinu desnog stupca -->
+                    <div class="relative w-full h-full min-h-[350px] lg:min-h-[450px] flex items-center justify-center bg-black rounded-3xl overflow-hidden shadow-xl border-2 border-brand-primary">
+                        <img src="Caddy.png" alt="O nama Trubica - Caddy prijevoz" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -483,40 +484,34 @@
                 </div>
             </div>
 
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 text-center">
-                <h3 class="font-heading text-2xl md:text-4xl font-bold text-brand-darker mb-2">Zavirite u našu opremu</h3>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 text-center">
+                <h3 class="font-heading text-2xl md:text-3xl font-bold text-brand-darker mb-2">Zavirite u našu opremu</h3>
                 <div class="w-20 h-1 bg-brand-primary mx-auto mb-10 rounded"></div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
-                    <!-- Slika 1 -->
-                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(2);">
-                        <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Auto Prikolice" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Auto Prikolice</div>
+                    <div class="relative group rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-brand-primary cursor-pointer bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(2);">
+                        <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Auto Prikolice" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Auto Prikolice</div>
                     </div>
-                    <!-- Slika 2 -->
-                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(5);">
-                        <img src="najam-hladnjace (3).jpg" alt="Hladnjače" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Hladnjače</div>
+                    <div class="relative group rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-brand-primary cursor-pointer bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(5);">
+                        <img src="najam-hladnjace.jpg" alt="Hladnjače" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Hladnjače</div>
                     </div>
-                    <!-- Slika 3 -->
-                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(12);">
-                        <img src="najam-sklopivih-stolova-crni.jpg" alt="Event Oprema" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Event Oprema</div>
+                    <div class="relative group rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-brand-primary cursor-pointer bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(12);">
+                        <img src="najam-sklopivih-stolova-crni.jpg" alt="Event Oprema" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Event Oprema</div>
                     </div>
-                    <!-- Slika 4 -->
-                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(11);">
-                        <img src="najam_auta (2).jpg" alt="Najam Vozila" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Najam Vozila</div>
+                    <div class="relative group rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-brand-primary cursor-pointer bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(11);">
+                        <img src="najam_auta.jpg" alt="Najam Vozila" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Najam Vozila</div>
                     </div>
-                    <!-- Slika 5 -->
-                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(0);">
-                        <img src="Najam sandučarke (3).jpg" alt="Sandučarka" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Sandučarka</div>
+                    <div class="relative group rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-brand-primary cursor-pointer bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(0);">
+                        <img src="Najam sandučarke (3).jpg" alt="Sandučarka" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Sandučarka</div>
                     </div>
-                    <!-- Slika 6 -->
-                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(13);">
-                        <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Barski Stolovi" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Barski Stolovi</div>
+                    <div class="relative group rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-brand-primary cursor-pointer bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(13);">
+                        <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Barski Stolovi" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Barski Stolovi</div>
                     </div>
                 </div>
                 
@@ -592,25 +587,27 @@
             </div>
         </section>
 
-        <!-- 3b. ZASEBNA STRANICA ZA POJEDINU USLUGU -->
+        <!-- 3b. ZASEBNA STRANICA ZA POJEDINU USLUGU (OKOMITI DIZAJN: SLIKA GORE, TEKST DOLJE + SLIČICE ISPOD OKVIRA) -->
         <section id="view-usluga-detalji" class="page-view py-16 md:py-24 bg-brand-light">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <button onclick="switchView('usluge')" class="font-heading inline-flex items-center text-gray-600 hover:text-black font-bold transition mb-8 cursor-pointer">
                     <i class="fa-solid fa-arrow-left mr-2"></i> Nazad na sve usluge
                 </button>
-                
-                <!-- Glavni okvir usluge -->
-                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col text-white w-full mb-6">
-                    <div class="w-full relative bg-black">
-                        <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-auto block cursor-zoom-in" onclick="openLightbox(this.src)">
-                        <button onclick="changeServiceSlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-10 border border-gray-700">
-                            <i class="fa-solid fa-chevron-left"></i>
+
+                <!-- Glavni okvir -->
+                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col text-white w-full mb-8">
+                    <!-- Slika gore (puna širina, automatska visina) -->
+                    <div class="w-full relative bg-black min-h-[300px] md:min-h-[450px] flex items-center justify-center">
+                        <img id="service-detail-img" src="" alt="Slika usluge" class="w-full max-h-[600px] object-contain cursor-zoom-in block" onclick="openLightbox(this.src)">
+                        <button onclick="changeServiceSlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-md transition z-10 border border-gray-700">
+                            <i class="fa-solid fa-chevron-left text-xl"></i>
                         </button>
-                        <button onclick="changeServiceSlide(1)" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-10 border border-gray-700">
-                            <i class="fa-solid fa-chevron-right"></i>
+                        <button onclick="changeServiceSlide(1)" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-md transition z-10 border border-gray-700">
+                            <i class="fa-solid fa-chevron-right text-xl"></i>
                         </button>
                     </div>
 
+                    <!-- Tekst dolje -->
                     <div class="w-full p-8 md:p-12 bg-black flex flex-col justify-between border-t border-gray-800">
                         <div>
                             <h2 id="service-detail-title" class="font-heading text-3xl font-bold text-white mb-4">Naslov Usluge</h2>
@@ -627,7 +624,10 @@
                     </div>
                 </div>
 
-                <!-- Traka sa malim slikama IZVAN I ISPOD glavnog okvira -->
+                <!-- Male sličice IZVAN I ISPOD glavnog okvira -->
+                <div class="text-center mb-3">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Ostale slike ove usluge</p>
+                </div>
                 <div id="service-thumbnails" class="flex justify-center gap-4 w-full overflow-x-auto py-2"></div>
             </div>
         </section>
@@ -655,7 +655,7 @@
                 <div id="pdf-printable-content" class="bg-white text-gray-800 p-8 md:p-12 rounded-xl font-sans relative">
                     <div class="flex flex-col sm:flex-row justify-between items-start border-b-2 border-black pb-6 mb-8 gap-4">
                         <div>
-                            <!-- NOVI TEKSTUALNI CRNO-ŽUTI LOGO (Bez slike za PDF) -->
+                            <!-- Tekstualni logo za PDF -->
                             <div class="font-heading text-3xl font-black tracking-tighter uppercase mb-2">
                                 <span class="text-black">TRUBI</span><span class="text-brand-primary">CA</span>
                             </div>
@@ -802,7 +802,7 @@
             </div>
         </section>
 
-        <!-- 5b. DETALJI SLIKE -->
+        <!-- 5b. DETALJI SLIKE (OKOMITI DIZAJN: SLIKA GORE, TEKST DOLJE + SLIČICE ISPOD OKVIRA) -->
         <section id="view-slika-detalji" class="page-view py-10 md:py-20 bg-brand-light">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <button onclick="switchView('galerija')" class="font-heading inline-flex items-center text-gray-600 hover:text-black font-bold transition mb-8 cursor-pointer">
@@ -812,10 +812,11 @@
                     Nazad na galeriju
                 </button>
                 
-                <!-- Glavni okvir slike u galeriji -->
-                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col relative text-white w-full mb-6">
-                    <div class="w-full relative bg-black">
-                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-auto block cursor-zoom-in" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
+                <!-- Glavni okvir -->
+                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col relative text-white w-full mb-8">
+                    <!-- Slika gore (puna širina, automatska visina) -->
+                    <div class="w-full relative bg-black min-h-[300px] md:min-h-[450px] flex items-center justify-center">
+                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full max-h-[600px] object-contain cursor-zoom-in block" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
                         <button onclick="changeGallerySlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left text-xl"></i>
                         </button>
@@ -824,6 +825,7 @@
                         </button>
                     </div>
                     
+                    <!-- Tekst dolje -->
                     <div class="w-full p-8 md:p-12 flex flex-col justify-center bg-black border-t border-gray-800">
                         <h2 id="detail-title" class="font-heading text-3xl font-bold text-white mb-4">Naslov...</h2>
                         <p id="detail-desc" class="text-gray-300 text-base leading-relaxed mb-8 border-l-4 border-brand-primary pl-4 font-medium">Opis...</p>
@@ -833,7 +835,10 @@
                     </div>
                 </div>
 
-                <!-- Traka sa malim slikama IZVAN I ISPOD glavnog okvira -->
+                <!-- Male sličice IZVAN I ISPOD glavnog okvira -->
+                <div class="text-center mb-3">
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Ostale slike u kategoriji</p>
+                </div>
                 <div id="gallery-thumbnails" class="flex justify-center gap-4 w-full overflow-x-auto py-2"></div>
             </div>
         </section>
@@ -960,7 +965,7 @@
                     </div>
                 </div>
 
-                <!-- Google Karta s postavljenom širinom na 100% (w-full) okvira -->
+                <!-- Google Karta s fiksiranom širinom 100% u cijelom okviru -->
                 <div class="bg-white p-4 rounded-2xl shadow-soft border border-gray-200 overflow-hidden w-full">
                     <h3 class="font-heading text-xl font-bold text-black mb-4 px-2"><i class="fa-solid fa-map-location-dot text-brand-primary mr-2"></i> Naša Lokacija na Karti (Zagreb)</h3>
                     <div class="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden">
@@ -1004,15 +1009,15 @@
 
     </main>
 
-    <!-- APP INSTALL BANNER (Povećan logo) -->
+    <!-- APP INSTALL BANNER (Veliki jasan logo) -->
     <div id="app-install-banner" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[60] w-[90%] max-w-sm bg-black border-2 border-brand-primary rounded-2xl shadow-2xl p-6 flex flex-col items-center text-center opacity-0 pointer-events-none scale-95 transition-all duration-300">
         <button onclick="closeAppInstall()" class="absolute top-3 right-3 text-gray-400 hover:text-brand-primary transition text-lg">
             <i class="fa-solid fa-times"></i>
         </button>
-        <div class="w-full max-w-[200px] h-20 mb-5 flex items-center justify-center mx-auto">
-            <img src="logo.ico" alt="App Icon" class="w-full h-full object-contain drop-shadow-xl" onerror="this.src='logo.jpg'">
+        <div class="w-full h-24 mb-4 flex items-center justify-center">
+            <img src="logo.ico" alt="App Icon" class="w-full h-full object-contain" onerror="this.src='logo.jpg'">
         </div>
-        <h4 class="text-white font-heading font-bold text-2xl leading-tight mb-3">Trubica Aplikacija</h4>
+        <h4 class="text-white font-heading font-bold text-2xl leading-tight mb-2">Trubica Aplikacija</h4>
         <p id="app-install-text" class="text-gray-300 text-sm mb-6 leading-relaxed">Dodajte nas na početni zaslon vašeg uređaja za brži i lakši pristup uslugama i rezervacijama.</p>
         <div class="flex gap-3 w-full">
             <button onclick="closeAppInstall()" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-700 font-bold py-3.5 rounded-xl transition text-sm">
@@ -1518,12 +1523,11 @@
             // Zadržavanje stranice prilikom osvježavanja
             const hash = window.location.hash.substring(1);
             if (hash && document.getElementById('view-' + hash)) {
-                switchView(hash, true); // true znači da ne skrola odmah na vrh
+                switchView(hash, true);
             } else {
                 switchView('naslovna', true);
             }
             
-            // Zadržavanje pozicije (skrolanja)
             setTimeout(() => {
                 const savedScroll = sessionStorage.getItem('scrollPos');
                 if (savedScroll) {
@@ -1532,7 +1536,6 @@
             }, 100); 
         });
 
-        // Prije učitavanja druge stranice / refresh-a spremamo poziciju
         window.addEventListener('beforeunload', () => {
             sessionStorage.setItem('scrollPos', window.scrollY);
         });
@@ -1586,11 +1589,9 @@
                 if (!skipScroll) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-                // Update link hash kako bi preglednik pamtio
                 history.replaceState(null, null, '#' + viewId);
             }
 
-            // Održavanje ispravnog taba za sporedne preglede
             let navTarget = viewId;
             if (viewId === 'slika-detalji') navTarget = 'galerija';
             if (viewId === 'usluga-detalji') navTarget = 'usluge';
@@ -1679,7 +1680,6 @@
             const element = document.getElementById('pdf-printable-content');
             if (!element) return;
 
-            // Privremeno osiguravamo da je element u potpunosti vidljiv i renderiran u DOM-u
             const viewCjenik = document.getElementById('view-cjenik');
             const wasActive = viewCjenik.classList.contains('active');
             
@@ -1702,7 +1702,6 @@
             };
 
             html2pdf().set(opt).from(element).save().then(() => {
-                // Vraćamo stilove na staro ako sekcija nije bila aktivna
                 if (!wasActive) {
                     viewCjenik.style.display = '';
                     viewCjenik.style.position = '';
@@ -1738,7 +1737,6 @@
             loadGalleryGrid(category);
         }
 
-        // APP INSTALL LOGIKA S PWA PODRŠKOM
         function showAppInstallBanner() {
             if (!sessionStorage.getItem('trubica_app_banner_closed')) {
                 const banner = document.getElementById('app-install-banner');
