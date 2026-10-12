@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trubica - Profesionalan i pouzdan najam prikolica i hladnjača Zagreb</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -571,7 +574,8 @@
                 <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col lg:flex-row text-white">
                     <div class="lg:w-1/2 relative min-h-[350px] lg:min-h-[500px]">
                         <div id="service-slider-container" class="w-full h-full relative">
-                            <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-full object-cover min-h-[350px] lg:min-h-[500px]">
+                            <!-- Slika postavljena na object-contain s opcijom povećala -->
+                            <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-full object-contain min-h-[350px] lg:min-h-[500px] cursor-zoom-in" onclick="openLightbox(this.src)">
                         </div>
                         <button onclick="changeServiceSlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left"></i>
@@ -780,7 +784,8 @@
                 
                 <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col lg:flex-row relative text-white">
                     <div class="lg:w-3/5 relative min-h-[350px] lg:min-h-[550px] bg-black">
-                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-full object-cover min-h-[350px] lg:min-h-[550px]" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
+                        <!-- Slika postavljena na object-contain s opcijom povećala -->
+                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-full object-contain min-h-[350px] lg:min-h-[550px] cursor-zoom-in" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
                         <button onclick="changeGallerySlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left text-xl"></i>
                         </button>
@@ -1037,6 +1042,12 @@
                 </form>
             </div>
         </div>
+    </div>
+    
+    <!-- Lightbox Modal (Povećalo za slike) -->
+    <div id="image-lightbox" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeLightbox()">
+        <button class="absolute top-4 right-4 text-white hover:text-brand-primary text-4xl font-bold transition z-50">&times;</button>
+        <img id="lightbox-img" src="" alt="Uvećana slika" class="max-w-[90vw] max-h-[90vh] object-contain cursor-zoom-out shadow-2xl rounded-lg relative z-40">
     </div>
 
     <!-- Podnožje -->
@@ -1380,6 +1391,18 @@
             if (currentDetailIndex >= galleryData.length) currentDetailIndex = 0;
             openImageDetailsByIndex(currentDetailIndex);
         }
+        
+        // LIGHTBOX FUNKCIJE
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            const lb = document.getElementById('image-lightbox');
+            lb.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('image-lightbox');
+            lb.classList.add('opacity-0', 'pointer-events-none');
+        }
 
         function updateLiveDateTime() {
             const now = new Date();
@@ -1425,6 +1448,27 @@
             setInterval(updateLiveDateTime, 60000);
             
             setTimeout(showAppInstallBanner, 4000);
+
+            // Zadržavanje stranice prilikom osvježavanja
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById('view-' + hash)) {
+                switchView(hash, true); // true znači da ne skrola odmah na vrh
+            } else {
+                switchView('naslovna', true);
+            }
+            
+            // Zadržavanje pozicije (skrolanja)
+            setTimeout(() => {
+                const savedScroll = sessionStorage.getItem('scrollPos');
+                if (savedScroll) {
+                    window.scrollTo(0, parseInt(savedScroll));
+                }
+            }, 100); 
+        });
+
+        // Prije učitavanja druge stranice / refresh-a spremamo poziciju
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.setItem('scrollPos', window.scrollY);
         });
 
         let currentHeroSlide = 0;
@@ -1466,20 +1510,29 @@
             heroSlideInterval = setInterval(nextHeroSlide, 5000);
         }
 
-        function switchView(viewId) {
+        function switchView(viewId, skipScroll = false) {
             const views = document.querySelectorAll('.page-view');
             views.forEach(v => v.classList.remove('active'));
 
             const targetView = document.getElementById('view-' + viewId);
             if (targetView) {
                 targetView.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (!skipScroll) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                // Update link hash kako bi preglednik pamtio
+                history.replaceState(null, null, '#' + viewId);
             }
+
+            // Održavanje ispravnog taba za sporedne preglede
+            let navTarget = viewId;
+            if (viewId === 'slika-detalji') navTarget = 'galerija';
+            if (viewId === 'usluga-detalji') navTarget = 'usluge';
 
             const navButtons = document.querySelectorAll('.nav-btn');
             navButtons.forEach(btn => {
                 const target = btn.getAttribute('data-target');
-                if (target === viewId) {
+                if (target === navTarget) {
                     btn.classList.add('text-brand-primary', 'nav-underline-active');
                     btn.classList.remove('text-gray-300');
                 } else {
@@ -1556,7 +1609,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-                function downloadPDF() {
+        function downloadPDF() {
             const element = document.getElementById('pdf-printable-content');
             if (!element) return;
 
@@ -1586,12 +1639,11 @@
                 // Vraćamo stilove na staro ako sekcija nije bila aktivna
                 if (!wasActive) {
                     viewCjenik.style.display = '';
-                    viewCjenikstyle.position = '';
+                    viewCjenik.style.position = '';
                     viewCjenik.style.left = '';
                 }
             });
         }
-
 
         function submitBookingForm() {
             const msg = document.getElementById('booking-success-msg');
