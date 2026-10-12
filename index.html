@@ -127,6 +127,16 @@
             background-color: #eab308;
             margin-bottom: 1.25rem;
         }
+
+        select option {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        select option:checked,
+        select option:hover {
+            background-color: #eab308 !important;
+            color: #000000 !important;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-700 bg-brand-light antialiased min-h-screen flex flex-col justify-between">
@@ -484,7 +494,7 @@
                 </div>
             </div>
 
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 text-center">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h3 class="font-heading text-2xl md:text-3xl font-bold text-brand-darker mb-2">Zavirite u našu opremu</h3>
                 <div class="w-20 h-1 bg-brand-primary mx-auto mb-10 rounded"></div>
                 
@@ -597,8 +607,8 @@
                 <!-- Glavni okvir -->
                 <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col text-white w-full mb-8">
                     <!-- Slika gore (puna širina, automatska visina) -->
-                    <div class="w-full relative bg-black min-h-[300px] md:min-h-[450px] flex items-center justify-center">
-                        <img id="service-detail-img" src="" alt="Slika usluge" class="w-full max-h-[600px] object-contain cursor-zoom-in block" onclick="openLightbox(this.src)">
+                    <div class="w-full relative bg-black flex items-center justify-center">
+                        <img id="service-detail-img" src="" alt="Slika usluge" class="w-full aspect-[4/3] sm:aspect-[16/9] object-cover cursor-zoom-in block" onclick="openLightbox(this.src)">
                         <button onclick="changeServiceSlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-md transition z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left text-xl"></i>
                         </button>
@@ -815,8 +825,8 @@
                 <!-- Glavni okvir -->
                 <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col relative text-white w-full mb-8">
                     <!-- Slika gore (puna širina, automatska visina) -->
-                    <div class="w-full relative bg-black min-h-[300px] md:min-h-[450px] flex items-center justify-center">
-                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full max-h-[600px] object-contain cursor-zoom-in block" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
+                    <div class="w-full relative bg-black flex items-center justify-center">
+                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full aspect-[4/3] sm:aspect-[16/9] object-cover cursor-zoom-in block" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
                         <button onclick="changeGallerySlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left text-xl"></i>
                         </button>
@@ -844,7 +854,7 @@
         </section>
 
         <!-- 6. UPIT ZA REZERVACIJU -->
-        <section id="view-rezervacija" class="page-view py-16 md:py-24 bg-white">
+        <section id="view-rezervacija" class="page-view py-16 md:py-24 bg-brand-light">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
                     <span class="text-gray-500 font-bold text-sm uppercase tracking-widest">Osigurajte termin</span>
@@ -853,22 +863,22 @@
                     <p class="text-gray-600 mt-4 max-w-xl mx-auto">Ispunite obrazac i javljamo vam se u roku od 30 minuta s potvrdom raspoloživosti.</p>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 border-t-8 border-t-brand-primary">
+                <div class="bg-black rounded-2xl shadow-xl p-8 md:p-12 border border-gray-800 border-t-8 border-t-brand-primary">
                     <form onsubmit="event.preventDefault(); submitBookingForm();" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Ime i Prezime *</label>
-                                <input type="text" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="Npr. Ivan Horvat">
+                                <label class="block text-sm font-bold text-brand-primary mb-2">Ime i Prezime *</label>
+                                <input type="text" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="Npr. Ivan Horvat">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Broj mobitela *</label>
-                                <input type="tel" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="09X XXX XXXX">
+                                <label class="block text-sm font-bold text-brand-primary mb-2">Broj mobitela *</label>
+                                <input type="tel" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="09X XXX XXXX">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Odaberite uslugu ili opremu *</label>
-                            <select id="booking-service-select" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition">
-                                <option value="" disabled selected>Odaberite iz ponude...</option>
+                            <label class="block text-sm font-bold text-brand-primary mb-2">Odaberite uslugu ili opremu *</label>
+                            <select id="booking-service-select" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition">
+                                <option value="" disabled selected class="text-gray-500">Odaberite iz ponude...</option>
                                 <option value="sanducarka">Najam Sandučarke</option>
                                 <option value="osobna-vozila">Najam Osobnih Vozila</option>
                                 <option value="prikolica-motori">Najam Prikolica za Motore i Quadove</option>
@@ -880,19 +890,19 @@
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Datum preuzimanja *</label>
-                                <input type="date" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition">
+                                <label class="block text-sm font-bold text-brand-primary mb-2">Datum preuzimanja *</label>
+                                <input type="date" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Datum vraćanja *</label>
-                                <input type="date" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition">
+                                <label class="block text-sm font-bold text-brand-primary mb-2">Datum vraćanja *</label>
+                                <input type="date" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Dodatne napomene</label>
-                            <textarea rows="3" class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="Trebate li gurtne, dostavu na lokaciju ili imate posebne zahtjeve?"></textarea>
+                            <label class="block text-sm font-bold text-brand-primary mb-2">Dodatne napomene</label>
+                            <textarea rows="3" class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="Trebate li gurtne, dostavu na lokaciju ili imate posebne zahtjeve?"></textarea>
                         </div>
-                        <div id="booking-success-msg" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-center font-bold">
+                        <div id="booking-success-msg" class="hidden bg-green-900/50 border border-green-500 text-green-400 px-4 py-3 rounded-xl text-center font-bold">
                             Vaš zahtjev za rezervaciju je uspješno poslan! Kontaktirat ćemo vas uskoro.
                         </div>
                         <button type="submit" class="font-heading w-full bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-4 rounded-xl transition shadow-sm text-lg">
@@ -915,7 +925,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
                     <div class="lg:col-span-5 space-y-6">
                         <div class="bg-black text-white p-8 rounded-2xl shadow-xl space-y-8 border border-gray-900">
-                            <h3 class="font-heading text-2xl font-bold border-b border-gray-800 pb-4">Trubica j.d.o.o.</h3>
+                            <h3 class="font-heading text-2xl font-bold text-brand-primary border-b border-brand-primary pb-4">Trubica j.d.o.o.</h3>
                             <div class="flex items-start space-x-4">
                                 <div class="bg-brand-primary p-3 rounded-xl text-black text-xl"><i class="fa-solid fa-phone"></i></div>
                                 <div>
@@ -940,22 +950,22 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-7 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-gray-200">
-                        <h3 class="font-heading text-2xl font-bold text-black mb-6">Pošaljite Brzi Upit</h3>
+                    <div class="lg:col-span-7 bg-black p-8 md:p-10 rounded-2xl shadow-xl border border-gray-800">
+                        <h3 class="font-heading text-2xl font-bold text-brand-primary border-b border-brand-primary pb-4 mb-6">Pošaljite Brzi Upit</h3>
                         <form onsubmit="event.preventDefault(); submitQuickInquiry();" class="space-y-4">
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Vaše Ime *</label>
-                                <input type="text" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="Ime i prezime">
+                                <label class="block text-sm font-bold text-brand-primary mb-1">Vaše Ime *</label>
+                                <input type="text" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="Ime i prezime">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Kontakt broj ili Email *</label>
-                                <input type="text" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="Mobitel ili email">
+                                <label class="block text-sm font-bold text-brand-primary mb-1">Kontakt broj ili Email *</label>
+                                <input type="text" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="Mobitel ili email">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Poruka / Pitanje *</label>
-                                <textarea rows="4" required class="w-full px-4 py-3 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="Napišite vaš upit ovdje..."></textarea>
+                                <label class="block text-sm font-bold text-brand-primary mb-1">Poruka / Pitanje *</label>
+                                <textarea rows="4" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="Napišite vaš upit ovdje..."></textarea>
                             </div>
-                            <div id="quick-success-msg" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm font-bold">
+                            <div id="quick-success-msg" class="hidden bg-green-900/50 border border-green-500 text-green-400 px-4 py-3 rounded-xl text-sm font-bold">
                                 Vaš brzi upit je uspješno poslan! Odgovorit ćemo vam uskoro.
                             </div>
                             <button type="submit" class="font-heading w-full bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-3.5 px-6 rounded-xl transition shadow-sm">
@@ -966,9 +976,9 @@
                 </div>
 
                 <!-- Google Karta s fiksiranom širinom 100% u cijelom okviru -->
-                <div class="bg-white p-4 rounded-2xl shadow-soft border border-gray-200 overflow-hidden w-full">
-                    <h3 class="font-heading text-xl font-bold text-black mb-4 px-2"><i class="fa-solid fa-map-location-dot text-brand-primary mr-2"></i> Naša Lokacija na Karti (Zagreb)</h3>
-                    <div class="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden">
+                <div class="bg-black p-4 rounded-2xl shadow-xl border border-gray-800 overflow-hidden w-full">
+                    <h3 class="font-heading text-xl font-bold text-brand-primary border-b border-brand-primary pb-4 mb-4 px-2"><i class="fa-solid fa-map-location-dot text-brand-primary mr-2"></i> Naša Lokacija na Karti (Zagreb)</h3>
+                    <div class="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden border border-gray-800">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2779.623757962338!2d15.917560975958164!3d45.83881430836637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d0c1db0e72d7%3A0x6f6293e47da39b18!2sKusto%C5%A1ijanska%20ul.%20357a%2C%2010090%2C%20Zagreb!5e0!3m2!1shr!2shr!4v1791786594935!5m2!1shr!2shr" class="w-full h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                     </div>
                 </div>
@@ -1043,39 +1053,39 @@
 
     <!-- Modal za Ostavljanje Recenzije -->
     <div id="review-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none">
-        <div class="bg-white rounded-2xl max-w-md w-full mx-4 overflow-hidden shadow-2xl border-2 border-brand-primary transform scale-95 transition-transform duration-300" id="review-modal-content">
-            <div class="bg-black p-5 text-white relative border-b-4 border-brand-primary">
+        <div class="bg-black rounded-2xl max-w-md w-full mx-4 overflow-hidden shadow-2xl border-2 border-brand-primary transform scale-95 transition-transform duration-300" id="review-modal-content">
+            <div class="bg-black p-5 text-white relative border-b border-gray-800">
                 <div class="absolute top-4 right-4">
                     <button onclick="closeReviewModal()" class="text-gray-400 hover:text-brand-primary text-2xl font-bold">&times;</button>
                 </div>
                 <h3 class="font-heading text-xl font-bold mt-1">Ostavite Recenziju</h3>
             </div>
-            <div class="p-6">
+            <div class="p-6 bg-black">
                 <form onsubmit="event.preventDefault(); submitReviewForm();" class="space-y-4">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">Vaše Ime *</label>
-                        <input type="text" required class="w-full px-4 py-2.5 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="Npr. Ivan Horvat">
+                        <label class="block text-sm font-bold text-brand-primary mb-1">Vaše Ime *</label>
+                        <input type="text" required class="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="Npr. Ivan Horvat">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">Ocjena *</label>
-                        <select required class="w-full px-4 py-2.5 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition text-brand-primary font-bold">
+                        <label class="block text-sm font-bold text-brand-primary mb-1">Ocjena *</label>
+                        <select required class="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition font-bold">
                             <option value="5">⭐⭐⭐⭐⭐ (5) Odlično</option>
                             <option value="4">⭐⭐⭐⭐ (4) Vrlo dobro</option>
                             <option value="3">⭐⭐⭐ (3) Dobro</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">Vaš Komentar *</label>
-                        <textarea rows="3" required class="w-full px-4 py-2.5 bg-brand-light border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition" placeholder="Napišite vaše iskustvo s našom uslugom..."></textarea>
+                        <label class="block text-sm font-bold text-brand-primary mb-1">Vaš Komentar *</label>
+                        <textarea rows="3" required class="w-full px-4 py-2.5 bg-white border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-brand-primary outline-none transition placeholder-gray-400" placeholder="Napišite vaše iskustvo s našom uslugom..."></textarea>
                     </div>
-                    <div id="review-success-msg" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-2 rounded-xl text-sm font-bold text-center">
+                    <div id="review-success-msg" class="hidden bg-green-900/50 border border-green-500 text-green-400 px-4 py-2 rounded-xl text-sm font-bold text-center">
                         Vaša recenzija je uspješno poslana! Hvala vam.
                     </div>
                     <div class="pt-2 flex gap-3">
                         <button type="submit" class="flex-1 font-heading bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-3 px-4 rounded-xl transition text-center shadow-sm">
                             Pošalji
                         </button>
-                        <button type="button" onclick="closeReviewModal()" class="font-heading px-5 py-3 border border-gray-300 rounded-xl font-bold text-gray-700 hover:bg-gray-100 transition">
+                        <button type="button" onclick="closeReviewModal()" class="font-heading px-5 py-3 border border-gray-700 bg-gray-800 rounded-xl font-bold text-gray-300 hover:bg-gray-700 transition">
                             Odustani
                         </button>
                     </div>
