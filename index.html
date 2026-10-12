@@ -484,15 +484,42 @@
             </div>
 
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 text-center">
-                <h3 class="font-heading text-2xl font-bold text-brand-darker mb-8">Zavirite u našu opremu</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                    <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Galerija slika 1" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-md cursor-pointer hover:opacity-90 transition" onclick="switchView('galerija')">
-                    <img src="najam-hladnjace (3).jpg" alt="Galerija slika 2" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-md cursor-pointer hover:opacity-90 transition" onclick="switchView('galerija')">
-                    <img src="najam-sklopivih-stolova-crni.jpg" alt="Galerija slika 3" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-md cursor-pointer hover:opacity-90 transition" onclick="switchView('galerija')">
-                    <img src="najam_auta (2).jpg" alt="Galerija slika 4" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-md cursor-pointer hover:opacity-90 transition hidden md:block" onclick="switchView('galerija')">
-                    <img src="Najam sandučarke (3).jpg" alt="Galerija slika 5" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-md cursor-pointer hover:opacity-90 transition hidden md:block" onclick="switchView('galerija')">
-                    <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Galerija slika 6" class="rounded-xl w-full h-32 md:h-40 object-cover shadow-md cursor-pointer hover:opacity-90 transition hidden md:block" onclick="switchView('galerija')">
+                <h3 class="font-heading text-2xl md:text-4xl font-bold text-brand-darker mb-2">Zavirite u našu opremu</h3>
+                <div class="w-20 h-1 bg-brand-primary mx-auto mb-10 rounded"></div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Slika 1 -->
+                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(2);">
+                        <img src="najam-prikolice-prijevoz-automobila.jpg" alt="Auto Prikolice" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Auto Prikolice</div>
+                    </div>
+                    <!-- Slika 2 -->
+                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(5);">
+                        <img src="najam-hladnjace (3).jpg" alt="Hladnjače" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Hladnjače</div>
+                    </div>
+                    <!-- Slika 3 -->
+                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black" onclick="switchView('galerija'); openImageDetailsByIndex(12);">
+                        <img src="najam-sklopivih-stolova-crni.jpg" alt="Event Oprema" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Event Oprema</div>
+                    </div>
+                    <!-- Slika 4 -->
+                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(11);">
+                        <img src="najam_auta (2).jpg" alt="Najam Vozila" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Najam Vozila</div>
+                    </div>
+                    <!-- Slika 5 -->
+                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(0);">
+                        <img src="Najam sandučarke (3).jpg" alt="Sandučarka" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Sandučarka</div>
+                    </div>
+                    <!-- Slika 6 -->
+                    <div class="relative group rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-brand-primary shadow-lg cursor-pointer transition-all bg-black hidden md:block" onclick="switchView('galerija'); openImageDetailsByIndex(13);">
+                        <img src="najam-sklopivih-stolova-bijeli.jpg" alt="Barski Stolovi" class="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-sm py-2.5 px-3 text-white text-xs md:text-sm font-bold truncate border-t border-gray-800">Barski Stolovi</div>
+                    </div>
                 </div>
+                
                 <button onclick="switchView('galerija')" class="font-heading font-bold text-brand-darker hover:text-brand-primary transition border-b-2 border-brand-primary pb-1 inline-flex items-center">
                     Više slika u galeriji <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
@@ -567,16 +594,15 @@
 
         <!-- 3b. ZASEBNA STRANICA ZA POJEDINU USLUGU -->
         <section id="view-usluga-detalji" class="page-view py-16 md:py-24 bg-brand-light">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <button onclick="switchView('usluge')" class="font-heading inline-flex items-center text-gray-600 hover:text-black font-bold transition mb-8 cursor-pointer">
                     <i class="fa-solid fa-arrow-left mr-2"></i> Nazad na sve usluge
                 </button>
-                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col lg:flex-row text-white">
-                    <div class="lg:w-1/2 relative min-h-[350px] lg:min-h-[500px]">
-                        <div id="service-slider-container" class="w-full h-full relative">
-                            <!-- Slika postavljena na object-contain s opcijom povećala -->
-                            <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-full object-contain min-h-[350px] lg:min-h-[500px] cursor-zoom-in" onclick="openLightbox(this.src)">
-                        </div>
+                
+                <!-- Glavni okvir usluge -->
+                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col text-white w-full mb-6">
+                    <div class="w-full relative bg-black">
+                        <img id="service-detail-img" src="" alt="Slika usluge" class="w-full h-auto block cursor-zoom-in" onclick="openLightbox(this.src)">
                         <button onclick="changeServiceSlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
@@ -584,7 +610,8 @@
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
-                    <div class="lg:w-1/2 p-8 md:p-12 bg-black flex flex-col justify-between">
+
+                    <div class="w-full p-8 md:p-12 bg-black flex flex-col justify-between border-t border-gray-800">
                         <div>
                             <h2 id="service-detail-title" class="font-heading text-3xl font-bold text-white mb-4">Naslov Usluge</h2>
                             <div class="mb-6 pb-6 border-b border-gray-800 flex items-center gap-4">
@@ -594,11 +621,14 @@
                             <p id="service-detail-desc" class="text-gray-300 leading-relaxed mb-6">Opis...</p>
                             <ul id="service-detail-features" class="space-y-3 text-sm text-gray-300 mb-8 font-medium"></ul>
                         </div>
-                        <button id="service-detail-book-btn" onclick="" class="font-heading w-full bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-4 px-6 rounded-xl transition shadow-md text-lg text-center transform hover:-translate-y-1">
+                        <button id="service-detail-book-btn" onclick="" class="font-heading w-full md:w-auto self-start bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-4 px-8 rounded-xl transition shadow-md text-lg text-center transform hover:-translate-y-1">
                             Zatraži ponudu / Odaberi <i class="fa-solid fa-arrow-right ml-2"></i>
                         </button>
                     </div>
                 </div>
+
+                <!-- Traka sa malim slikama IZVAN I ISPOD glavnog okvira -->
+                <div id="service-thumbnails" class="flex justify-center gap-4 w-full overflow-x-auto py-2"></div>
             </div>
         </section>
 
@@ -774,7 +804,7 @@
 
         <!-- 5b. DETALJI SLIKE -->
         <section id="view-slika-detalji" class="page-view py-10 md:py-20 bg-brand-light">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <button onclick="switchView('galerija')" class="font-heading inline-flex items-center text-gray-600 hover:text-black font-bold transition mb-8 cursor-pointer">
                     <span class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm border border-gray-300 mr-3 text-black">
                         <i class="fa-solid fa-arrow-left"></i>
@@ -782,10 +812,10 @@
                     Nazad na galeriju
                 </button>
                 
-                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col lg:flex-row relative text-white">
-                    <div class="lg:w-3/5 relative min-h-[350px] lg:min-h-[550px] bg-black">
-                        <!-- Slika postavljena na object-contain s opcijom povećala -->
-                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-full object-contain min-h-[350px] lg:min-h-[550px] cursor-zoom-in" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
+                <!-- Glavni okvir slike u galeriji -->
+                <div class="bg-black rounded-3xl shadow-2xl overflow-hidden border-2 border-brand-primary flex flex-col relative text-white w-full mb-6">
+                    <div class="w-full relative bg-black">
+                        <img id="detail-img" src="" alt="Detalji opreme" class="w-full h-auto block cursor-zoom-in" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/800x600/18181b/eab308?text=Trubica'">
                         <button onclick="changeGallerySlide(-1)" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-brand-primary text-white hover:text-black w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all z-10 border border-gray-700">
                             <i class="fa-solid fa-chevron-left text-xl"></i>
                         </button>
@@ -793,14 +823,18 @@
                             <i class="fa-solid fa-chevron-right text-xl"></i>
                         </button>
                     </div>
-                    <div class="lg:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-black border-t lg:border-t-0 lg:border-l border-gray-800">
+                    
+                    <div class="w-full p-8 md:p-12 flex flex-col justify-center bg-black border-t border-gray-800">
                         <h2 id="detail-title" class="font-heading text-3xl font-bold text-white mb-4">Naslov...</h2>
                         <p id="detail-desc" class="text-gray-300 text-base leading-relaxed mb-8 border-l-4 border-brand-primary pl-4 font-medium">Opis...</p>
-                        <button id="detail-link" onclick="" class="font-heading w-full bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-4 px-6 rounded-xl transition shadow-md flex items-center justify-center text-lg">
+                        <button id="detail-link" onclick="" class="font-heading w-full md:w-auto self-start bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-4 px-8 rounded-xl transition shadow-md flex items-center justify-center text-lg">
                             Pogledaj Ponudu <i class="fa-solid fa-arrow-right ml-3"></i>
                         </button>
                     </div>
                 </div>
+
+                <!-- Traka sa malim slikama IZVAN I ISPOD glavnog okvira -->
+                <div id="gallery-thumbnails" class="flex justify-center gap-4 w-full overflow-x-auto py-2"></div>
             </div>
         </section>
 
@@ -926,10 +960,11 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-2xl shadow-soft border border-gray-200 overflow-hidden">
+                <!-- Google Karta s postavljenom širinom na 100% (w-full) okvira -->
+                <div class="bg-white p-4 rounded-2xl shadow-soft border border-gray-200 overflow-hidden w-full">
                     <h3 class="font-heading text-xl font-bold text-black mb-4 px-2"><i class="fa-solid fa-map-location-dot text-brand-primary mr-2"></i> Naša Lokacija na Karti (Zagreb)</h3>
-                    <div class="w-full h-[400px] rounded-xl overflow-hidden">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2779.623757962338!2d15.917560975958164!3d45.83881430836637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d0c1db0e72d7%3A0x6f6293e47da39b18!2sKusto%C5%A1ijanska%20ul.%20357a%2C%2010090%2C%20Zagreb!5e0!3m2!1shr!2shr!4v1791786594935!5m2!1shr!2shr" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2779.623757962338!2d15.917560975958164!3d45.83881430836637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d0c1db0e72d7%3A0x6f6293e47da39b18!2sKusto%C5%A1ijanska%20ul.%20357a%2C%2010090%2C%20Zagreb!5e0!3m2!1shr!2shr!4v1791786594935!5m2!1shr!2shr" class="w-full h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                     </div>
                 </div>
             </div>
@@ -969,21 +1004,21 @@
 
     </main>
 
-    <!-- APP INSTALL BANNER (Crni prozor u sredini) -->
+    <!-- APP INSTALL BANNER (Povećan logo) -->
     <div id="app-install-banner" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[60] w-[90%] max-w-sm bg-black border-2 border-brand-primary rounded-2xl shadow-2xl p-6 flex flex-col items-center text-center opacity-0 pointer-events-none scale-95 transition-all duration-300">
         <button onclick="closeAppInstall()" class="absolute top-3 right-3 text-gray-400 hover:text-brand-primary transition text-lg">
             <i class="fa-solid fa-times"></i>
         </button>
-        <div class="w-20 h-20 mb-4 flex items-center justify-center">
-            <img src="Gemini_Generated_Image_wuqpsgwuqpsgwuqp.jpg" alt="App Icon" class="w-full h-full object-contain">
+        <div class="w-full max-w-[200px] h-20 mb-5 flex items-center justify-center mx-auto">
+            <img src="logo.ico" alt="App Icon" class="w-full h-full object-contain drop-shadow-xl" onerror="this.src='logo.jpg'">
         </div>
-        <h4 class="text-white font-heading font-bold text-xl leading-tight mb-2">Trubica Aplikacija</h4>
+        <h4 class="text-white font-heading font-bold text-2xl leading-tight mb-3">Trubica Aplikacija</h4>
         <p id="app-install-text" class="text-gray-300 text-sm mb-6 leading-relaxed">Dodajte nas na početni zaslon vašeg uređaja za brži i lakši pristup uslugama i rezervacijama.</p>
         <div class="flex gap-3 w-full">
-            <button onclick="closeAppInstall()" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-700 font-bold py-3 rounded-xl transition text-sm">
+            <button onclick="closeAppInstall()" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-700 font-bold py-3.5 rounded-xl transition text-sm">
                 Odustani
             </button>
-            <button onclick="installApp(event)" class="flex-1 bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-3 rounded-xl transition text-sm uppercase tracking-wide shadow-md">
+            <button onclick="installApp(event)" class="flex-1 bg-brand-primary hover:bg-brand-primaryHover text-black font-bold py-3.5 rounded-xl transition text-sm uppercase tracking-wide shadow-md">
                 Instaliraj
             </button>
         </div>
@@ -1307,7 +1342,6 @@
             
             document.getElementById('service-detail-price').innerText = srv.price;
             document.getElementById('service-detail-desc').innerHTML = srv.desc.replace(/\n/g, '<br>');
-            document.getElementById('service-detail-img').src = srv.images[0];
 
             const featuresList = document.getElementById('service-detail-features');
             featuresList.innerHTML = srv.features.map(f => `<li><i class="fa-solid fa-check text-brand-primary mr-2"></i> ${f}</li>`).join('');
@@ -1318,6 +1352,7 @@
                 document.getElementById('booking-service-select').value = srv.selectVal;
             };
 
+            updateServiceMainImage();
             switchView('usluga-detalji');
         }
 
@@ -1326,7 +1361,26 @@
             currentServiceImageIndex += dir;
             if(currentServiceImageIndex < 0) currentServiceImageIndex = currentActiveService.images.length - 1;
             if(currentServiceImageIndex >= currentActiveService.images.length) currentServiceImageIndex = 0;
+            updateServiceMainImage();
+        }
+
+        function setServiceSlide(index) {
+            currentServiceImageIndex = index;
+            updateServiceMainImage();
+        }
+
+        function updateServiceMainImage() {
+            if(!currentActiveService) return;
             document.getElementById('service-detail-img').src = currentActiveService.images[currentServiceImageIndex];
+            
+            const thumbContainer = document.getElementById('service-thumbnails');
+            if (thumbContainer) {
+                thumbContainer.innerHTML = currentActiveService.images.map((img, idx) => {
+                    const isActive = idx === currentServiceImageIndex;
+                    const borderClass = isActive ? 'border-brand-primary opacity-100 scale-105 shadow-lg' : 'border-gray-700 opacity-50 hover:opacity-100 hover:border-gray-500';
+                    return `<img src="${img}" onclick="setServiceSlide(${idx})" class="w-20 h-20 md:w-28 md:h-24 object-cover rounded-xl cursor-pointer border-2 transition-all transform shrink-0 ${borderClass}" alt="Slika usluge ${idx + 1}" onerror="this.src='https://placehold.co/400x300/18181b/eab308?text=Trubica'">`;
+                }).join('');
+            }
         }
 
         const galleryData = [
@@ -1382,6 +1436,18 @@
             document.getElementById('detail-desc').innerText = item.desc;
             document.getElementById('detail-img').src = item.img;
             document.getElementById('detail-link').onclick = function() { openServiceDetail(item.service); };
+            
+            const thumbContainer = document.getElementById('gallery-thumbnails');
+            if(thumbContainer) {
+                const sameCategoryItems = galleryData.map((g, i) => ({...g, globalIndex: i})).filter(g => g.category === item.category);
+                
+                thumbContainer.innerHTML = sameCategoryItems.map(g => {
+                    const isActive = g.globalIndex === currentDetailIndex;
+                    const borderClass = isActive ? 'border-brand-primary opacity-100 scale-105 shadow-lg' : 'border-gray-700 opacity-50 hover:opacity-100 hover:border-gray-500';
+                    return `<img src="${g.img}" onclick="openImageDetailsByIndex(${g.globalIndex})" class="w-20 h-20 md:w-28 md:h-24 object-cover rounded-xl cursor-pointer border-2 transition-all transform shrink-0 ${borderClass}" alt="${g.title}" onerror="this.src='https://placehold.co/400x300/18181b/eab308?text=Trubica'">`;
+                }).join('');
+            }
+
             switchView('slika-detalji');
         }
 
